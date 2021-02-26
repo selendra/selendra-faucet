@@ -100,7 +100,7 @@ export default function App() {
                 <p className='app__address'>Testnet wallet address</p>
                 <Row>
                   <input readOnly type="text" id="receive__wallet" value='5CUitEBxxEtcX8KhKLhg5xDcocnBTPru51kiB7M4hg9UT3q4'/>
-                  <p style={{color: '#585D86'}}>5CUitEBxxEtcX8KhKLhg5xDcocnBTPru51kiB7M4hg9UT3q4</p>
+                  <p style={{color: '#585D86'}}>5CUitEBxxEtc....BTPru51kiB7M4hg9UT3q4</p>
                   <Copy onClick={onCopy} className='app__copy'/>
                 </Row>
               </div>

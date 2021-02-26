@@ -1,6 +1,6 @@
 .App {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #090D28;
   color: #fff;
 }
@@ -83,4 +83,11 @@
 
 .app__copy:hover {
   color: #08B952;
+}
+
+/* SmartPhone */
+@media only screen and (max-width: 500px) {
+  .App {
+    padding: 0 10px;
+  }
 }
