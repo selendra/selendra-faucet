@@ -27,7 +27,7 @@ export default function App() {
       const newValue = Number(val.amount);
       if(lastValue + newValue > 100) {
         setLoading(false);
-        return message.error('You Already send 100 SEL!! Please comeback tomorrow');
+        return message.error('You can only send 100 SEL!! Please comeback tomorrow');
       }
     }
     // End Check Amount
