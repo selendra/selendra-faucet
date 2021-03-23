@@ -20,7 +20,7 @@
 
 .app__container Input {
   border-radius: 8px;
-  width: 100%;
+  width: 380px!important;
   height: 48px;
   background: #f5f5f5!important;
   color: #090D28!important;
