@@ -9,7 +9,7 @@ export default function App() {
 
   const handleSend = (val) => {
     setLoading(true);
-    axios.post(process.env.REACT_APP_API, {
+    axios.post('https://sheet.best/api/sheets/2b4de27a-7467-4f5a-af30-10ce0f135426', {
       email: val.email,
       phone: val.phone.replace(/^0+/, ''),
       wallet: val.wallet,
