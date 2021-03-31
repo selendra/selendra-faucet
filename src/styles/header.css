@@ -1,11 +1,34 @@
 .header {
-  width: 100vw;
+  max-width: 100%;
   height: 100px;
-  padding: 10px 0;
-  background-color: #090D28;
+  background-color: #1A2F3C;
 }
 
+.header__container {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+.header__row {
+  height: 100px;
+}
 .header__logo {
-  width: 44px;
-  height: 66px;
+  width: 160px;
+  height: 60px;
+}
+
+.header__item {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.site-layout-content {
+  background-color: #1D3442;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 20px 0;
 }
