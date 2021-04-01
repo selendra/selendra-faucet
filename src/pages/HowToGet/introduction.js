@@ -3,12 +3,24 @@ import { useState } from 'react'
 import { ReactComponent as PIC } from '../../assets/pic.svg'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import Next from '../../assets/next.png'
+import Back from '../../assets/back.png'
 
 export default function Introduction() {
   const history = useHistory();
   const { Step } = Steps;
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
+  const validateMessages = {
+    required: '${label} is required!',
+    types: {
+      email: '${label} is not a valid email!',
+      number: '${label} is not a valid number!',
+    },
+    number: {
+      range: '${label} must be between ${min} and ${max}',
+    },
+  };
   const dataSource = [
     {
       key: '1',
@@ -70,6 +82,11 @@ export default function Introduction() {
       dataIndex: 'address',
       key: 'address',
     },
+    {
+      title: 'DateTime',
+      dataIndex: 'date  time',
+      key: 'datetime',
+    },
   ];
 
   const onTwitter = () => {
@@ -95,10 +112,18 @@ export default function Introduction() {
       link: val.link
     })
     .then(_=> {
-      history.push('/success')
+      history.push('/success');
       setLoading(false);
     })
   }
+
+  const next = () => {
+    setCurrent(current + 1);
+  };
+
+  const prev = () => {
+    setCurrent(current - 1);
+  };
 
   const steps = [
     {
@@ -164,13 +189,13 @@ export default function Introduction() {
             <p className='intro__subTitle'>Please Field The Form</p>
             <br />
             <Form className='intro__input' onFinish={onSubmit}>
-              <Form.Item name='email'>
+              <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
                 <Input placeholder="Email"/>
               </Form.Item>
-              <Form.Item name='phone'>
+              <Form.Item name='phone' rules={[{ required: true }]}>
                 <Input placeholder="Phone Number"/>
               </Form.Item>
-              <Form.Item name='wallet'>
+              <Form.Item name='wallet' rules={[{ required: true }]}>
                 <Input placeholder="Wallet Address"/>
               </Form.Item>
               <Form.Item name='link'>
@@ -200,6 +225,30 @@ export default function Introduction() {
         <div className="steps-content">
           <p className='intro__title'>Step To Claim Airdrop</p>
           {steps[current].content}
+
+          <div style={{cursor: 'pointer'}} onClick={() => (current + 1)}>  
+            
+          </div>
+        </div>
+        <div className="steps-action">
+          <Row align='middle'>
+            <Col span={12}>
+              {current > 0 && (
+                <Button type='link' onClick={() => prev()}>
+                  <img src={Back} alt='back' style={{marginBottom: '4px'}} /><span style={{fontSize: '16px', fontWeight: '700', marginLeft: '10px'}}>Previous</span>
+                </Button>
+              )}
+            </Col>
+            <Col span={12}>
+              <Row justify='end'>
+                {current < steps.length - 1 && (
+                  <Button type='link' onClick={() => next()}>
+                    <span style={{fontSize: '16px', fontWeight: '700', marginRight: '10px'}}>Next</span><img src={Next} alt='next' />
+                  </Button>
+                )}  
+              </Row>
+            </Col>
+          </Row>
         </div>
       </div>
     </div>
