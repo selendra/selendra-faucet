@@ -117,7 +117,7 @@ export default function Introduction() {
     {
       title: 'Create BEP-20 Wallet',
       content: 
-        <Row align='middle' style={{height: '70vh'}}>
+        <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Create BEP-20 Wallet</p>
             <p className='intro__des'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
@@ -126,7 +126,9 @@ export default function Introduction() {
             </div>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <PIC style={{marginLeft: '4rem'}}/>
+            <Row justify='center'>
+              <PIC style={{marginLeft: '4.4rem'}} className='about__pic' />
+            </Row>
           </Col>
         </Row>
       ,
@@ -134,7 +136,7 @@ export default function Introduction() {
     {
       title: 'Share Link',
       content: 
-        <Row align='middle' style={{height: '70vh'}}>
+        <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Share Link To Social Media</p>
             <div className='intro__btnShare'>
@@ -144,7 +146,9 @@ export default function Introduction() {
             </div>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <PIC style={{marginLeft: '4rem'}}/>
+            <Row justify='center'>
+              <PIC style={{marginLeft: '4.4rem'}} className='about__pic' />
+            </Row>
           </Col>
         </Row>
       ,
@@ -152,8 +156,8 @@ export default function Introduction() {
     {
       title: 'Claim Airdrop',
       content: 
-        <Row align='middle' style={{height: '70vh'}}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+        <Row align='middle' style={{minHeight: '70vh'}}>
+          <Col xs={0} sm={0} md={24} lg={12} xl={12}>
             <PIC />
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>

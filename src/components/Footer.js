@@ -30,7 +30,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href=""
+                    href="https://docs.selendra.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -39,7 +39,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href=""
+                    href="https://github.com/selendra"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -59,7 +59,7 @@ export default function Footer() {
                   }}>
                     <li>
                       <a
-                        href=""
+                        href="https://medium.com/selendra"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -72,7 +72,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <a
-                        href=""
+                        href="https://t.me/selendraorg"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -85,7 +85,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <a
-                        href=""
+                        href="https://twitter.com/selendraorg"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -106,7 +106,7 @@ export default function Footer() {
                   }}>
                     <li>
                       <a
-                        href=""
+                        href="https://www.linkedin.com/company/selendra"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -119,7 +119,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <a
-                        href=""
+                        href="https://www.facebook.com/selendraio"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
