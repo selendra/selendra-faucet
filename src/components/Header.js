@@ -5,10 +5,12 @@ import logo from '../assets/selendra.png'
 import '../styles/header.css'
 import Footer from './Footer'
 import { ReactComponent as Menu } from '../assets/menu.svg'
+import About from './About'
 
 export default function Header(props) {
   const { Content } = Layout;
   const [visible, setVisible] = React.useState(false); 
+  const [modalVisible, setModalVisible] = React.useState(false);
   const showDrawer = () => {
     setVisible(true);
   };
@@ -45,8 +47,10 @@ export default function Header(props) {
             </Col>
             <Col xs={0} sm={0} md={12} lg={12} xl={12}>
               <Row justify='space-between' style={{width: 300}}>
-                <p className='header__item'>How To Get</p>
-                <p className='header__item'>About</p>
+                <NavLink to='/claimairdrop' style={{color: '#fff'}}>
+                  <p className='header__item'>How To Get</p>
+                </NavLink>
+                <p className='header__item' onClick={() => setModalVisible(true)}>About</p>
               </Row>
             </Col>
             <Col xs={12} sm={12} md={0} lg={0} xl={0}>
@@ -65,6 +69,7 @@ export default function Header(props) {
         </div>
       </Content>
       <Footer></Footer>
+      <About visible={modalVisible} setVisible={setModalVisible} />
     </Layout>
   )
 }

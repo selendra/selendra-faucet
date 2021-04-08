@@ -1,5 +1,6 @@
 import { Row, Col, Table, Steps, Button, Form, Input } from 'antd'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import ReCAPTCHA from "react-google-recaptcha";
 import { ReactComponent as PIC } from '../../assets/pic.svg'
 import axios from 'axios'
 import { useHistory } from 'react-router'
@@ -7,10 +8,20 @@ import Next from '../../assets/next.png'
 import Back from '../../assets/back.png'
 
 export default function Introduction() {
+  const _reCaptchaRef = useRef();
   const history = useHistory();
   const { Step } = Steps;
+  const [isVerified, setIsVerified] = useState(false);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
+  const handleChange = (value) => {
+    // if value is null recaptcha expired
+    if (value !== null) { 
+      setIsVerified(true) 
+    } else {
+      setIsVerified(false)
+    }
+  };
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -33,36 +44,42 @@ export default function Introduction() {
       name: '1',
       age: '7,539,822',
       address: '0.24',
+      datetime: 'April 2021'
     },
     {
       key: '3',
       name: '2',
       age: '6,597,345',
       address: '0.21',
+      datetime: 'July 2021'
     },
     {
       key: '4',
       name: '3',
       age: '5,654,867',
       address: '0.18',
+      datetime: 'October 2021'
     },
     {
       key: '5',
       name: '4',
       age: '4,712,389',
       address: '0.15',
+      datetime: 'January 2022'
     },
     {
       key: '6',
       name: '5',
       age: '3,759,911',
       address: '0.12',
+      datetime: 'April 2022'
     },
     {
       key: '7',
       name: '6',
       age: '3,141,593',
       address: '0.10',
+      datetime: 'July 2022'
     },
   ];
   
@@ -84,19 +101,18 @@ export default function Introduction() {
     },
     {
       title: 'DateTime',
-      dataIndex: 'date  time',
+      dataIndex: 'datetime',
       key: 'datetime',
     },
   ];
 
+  const shareMSG = 'Follow Selendra and get some $SEL for free. Share  https://twitter.com/selendraorg to get some more $SEL. Claim it at https://selendra.org/airdrop';
   const onTwitter = () => {
-    window.open('https://twitter.com/intent/tweet?url=https://twitter.com/selendraorg', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fselendra.org/airdrop%2F&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
 
-  const onFacebook = (url, title, descr, image, winWidth, winHeight) => {
-    const winTop = (window.screen.height / 2) - (420 / 2);
-    const winLeft = (window.screen.width / 2) - (420 / 2);
-    window.open('https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/selendraio?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + 650 + ',height=' + 550);
+  const onFacebook = () => {
+    window.open(`http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fselendra.org/airdrop&quote=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
   }
 
   const onTelegram = () => {
@@ -130,9 +146,9 @@ export default function Introduction() {
       title: 'Introduction',
       content: 
         <Row align='middle' style={{height: '70vh'}}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={24} lg={11} xl={11}>
             <p className='intro__subTitle'>Introduction</p>
-            <p className='intro__des'>We will conduct airdrop 6 sessions of amount 1% of SEL total issue. The first event will take place during Khmer New Year. Airdrop event will look like in the table.</p>
+            <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 1% of SEL total issue. Each session will last as long as 3 month. The first event will take place during Khmer New Year. Airdrop event will look like in the table.</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Table dataSource={dataSource} columns={columns} pagination={false}/>
@@ -163,11 +179,11 @@ export default function Introduction() {
       content: 
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <p className='intro__subTitle'>Share Link To Social Media</p>
+            <p className='intro__subTitle'>Share On Social Media</p>
             <div className='intro__btnShare'>
-              <Button onClick={onTwitter}>Post In Twitter</Button>
-              <Button onClick={onFacebook}>Post In Facebook</Button>
-              <Button onClick={onTelegram}>Join Telegram Community</Button>
+              <Button onClick={onTwitter}>Post in twitter</Button>
+              <Button onClick={onFacebook}>Post in facebook</Button>  
+              <Button onClick={onTelegram}>Join telegram community</Button>
             </div>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -201,10 +217,18 @@ export default function Introduction() {
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
               </Form.Item>
-              <Form.Item>
-                <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
-              </Form.Item>
+              { isVerified &&
+                <Form.Item>
+                  <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
+                </Form.Item>
+              }
             </Form>
+            <ReCAPTCHA
+              style={{ display: "inline-block" }}
+              ref={_reCaptchaRef}
+              sitekey={process.env.REACT_APP_SITE_KEY}
+              onChange={handleChange}
+            />
           </Col>
         </Row>,
     },
@@ -217,6 +241,7 @@ export default function Introduction() {
   return (
     <div className='intro'>
       <div className='intro__container'>
+      {/* <div></div> */}
         <Steps current={current} onChange={onChange} style={{padding: '2rem 0'}}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
@@ -245,7 +270,7 @@ export default function Introduction() {
                   <Button type='link' onClick={() => next()}>
                     <span style={{fontSize: '16px', fontWeight: '700', marginRight: '10px'}}>Next</span><img src={Next} alt='next' />
                   </Button>
-                )}  
+                )}
               </Row>
             </Col>
           </Row>
