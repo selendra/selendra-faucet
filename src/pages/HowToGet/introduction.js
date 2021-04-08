@@ -145,7 +145,7 @@ export default function Introduction() {
     {
       title: 'Introduction',
       content: 
-        <Row align='middle' style={{height: '70vh'}}>
+        <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={11} xl={11}>
             <p className='intro__subTitle'>Introduction</p>
             <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 1% of SEL total issue. Each session will last as long as 3 month. The first event will take place during Khmer New Year. Airdrop event will look like in the table.</p>
@@ -241,12 +241,15 @@ export default function Introduction() {
   return (
     <div className='intro'>
       <div className='intro__container'>
-      {/* <div></div> */}
-        <Steps current={current} onChange={onChange} style={{padding: '2rem 0'}}>
-          {steps.map(item => (
-            <Step key={item.title} title={item.title} />
-          ))}
-        </Steps>
+        <Row>
+          <Col xs={0} sm={0} md={24} lg={24} xl={24}>
+            <Steps current={current} onChange={onChange} style={{padding: '2rem 0'}}>
+              {steps.map(item => (
+                <Step key={item.title} title={item.title} />
+              ))}
+            </Steps>
+          </Col>
+        </Row>
         <div className="steps-content">
           <p className='intro__title'>Step To Claim Airdrop</p>
           {steps[current].content}

@@ -33,7 +33,7 @@ export default function Header(props) {
         <NavLink to='/claimairdrop' onClick={onClose}>
           <p className='header__navItem'>How To Get</p>
         </NavLink>
-        <NavLink to='/' onClick={onClose}>
+        <NavLink to='/' onClick={() => setModalVisible(true)}>
           <p className='header__navItem'>About</p>
         </NavLink>
       </Drawer>
