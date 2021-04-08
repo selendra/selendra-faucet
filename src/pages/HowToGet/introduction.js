@@ -226,7 +226,7 @@ export default function Introduction() {
             <ReCAPTCHA
               style={{ display: "inline-block" }}
               ref={_reCaptchaRef}
-              sitekey={process.env.REACT_APP_SITE_KEY}
+              sitekey='6Lf34KAaAAAAAICgT3OBkZrgkstqAhhaeghOnhP-'
               onChange={handleChange}
             />
           </Col>
