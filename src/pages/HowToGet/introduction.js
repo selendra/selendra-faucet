@@ -113,7 +113,7 @@ export default function Introduction() {
   }
 
   const onFacebook = () => {
-    window.open(`http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fselendra.org/airdrop&quote=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
+    window.open(`http://www.facebook.com/sharer.php?u=http%3A%2F%2Fselendra.org/airdrop&quote=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
   }
 
   const onTelegram = () => {
@@ -163,11 +163,11 @@ export default function Introduction() {
       title: 'Introduction',
       content: 
         <Row align='middle' style={{minHeight: '70vh'}}>
-          <Col xs={24} sm={24} md={24} lg={11} xl={11}>
+          <Col xs={24} sm={24} md={24} lg={10} xl={10}>
             <p className='intro__subTitle'>Introduction</p>
-            <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 1% of SEL total issue. Each session will last as long as 3 month. The first event will take place during Khmer New Year. Airdrop event will look like in the table.</p>
+            <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 of SEL tokens. Each session will last as long as 3 months. The first event will take place during Khmer New Year of the year 2021. Airdrop event will look like in the table.</p>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={24} lg={{span:12, offset: 1}} xl={{span:12, offset: 1}}>
             <Table dataSource={dataSource} columns={columns} pagination={false}/>
           </Col>
         </Row>,
@@ -178,7 +178,9 @@ export default function Introduction() {
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Create BEP-20 Wallet</p>
-            <p className='intro__des'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            <p className='intro__des'>To recived the airdrop you need to have a Selendra BEP-20 wallet.
+            Our Selendra airdrop is performing at Binace Smart chain.<br/>
+            Binance Smart Chain has a BEP20 token standard that functions similarly to Ethereum’s ERC20 standard. BEP20 is a developer-friendly token standard that allows anyone to deploy fungible digital currencies or tokens on Binance Smart Chain.</p>
             <div className='intro__btn'>
               <Button>Create BEP-20 Wallet</Button>
             </div>
@@ -219,7 +221,7 @@ export default function Introduction() {
             <PIC />
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <p className='intro__subTitle'>Please Field The Form</p>
+            <p className='intro__subTitle'>Field the form with your wallet to receive your $SEL</p>
             <br />
             <Form className='intro__input' onFinish={onSubmit}>
               <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
