@@ -234,14 +234,16 @@ export default function Introduction() {
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
               </Form.Item>
-              <Form.Item>
-                <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
-              </Form.Item>
+              { isVerified &&
+                <Form.Item>
+                  <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
+                </Form.Item>
+              }
             </Form>
             <ReCAPTCHA
               style={{ display: "inline-block" }}
               ref={_reCaptchaRef}
-              sitekey='6Lf34KAaAAAAAICgT3OBkZrgkstqAhhaeghOnhP-'
+              sitekey={process.env.REACT_APP_SITE_KEY}
               onChange={handleChange}
             />
           </Col>
