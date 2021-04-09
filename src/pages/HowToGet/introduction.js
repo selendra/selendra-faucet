@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router'
 import Next from '../../assets/next.png'
 import Back from '../../assets/back.png'
+import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export default function Introduction() {
   const _reCaptchaRef = useRef();
@@ -119,17 +120,33 @@ export default function Introduction() {
     window.open('https://t.me/selendraorg', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
 
-  const onSubmit = (val) => {
+  const onSubmit = async(val) => {
+    const SPREADSHEET_ID = process.env.REACT_APP_SPREADSHEET_ID;
+    const SHEET_ID = process.env.REACT_APP_SHEET_ID;
+    const CLIENT_EMAIL = process.env.REACT_APP_CLIENT_EMAIL;
+    const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY.replace(/\\n/g, '\n')
+    const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
     setLoading(true);
-    axios.post('https://sheet.best/api/sheets/2b4de27a-7467-4f5a-af30-10ce0f135426', {
-      email: val.email,
-      phone: val.phone.replace(/^0+/, ''),
-      wallet: val.wallet,
-      link: val.link
+    await doc.useServiceAccountAuth({
+      client_email: CLIENT_EMAIL,
+      private_key: PRIVATE_KEY,
+    });
+    // loads document properties and worksheets
+    await doc.loadInfo();
+
+    const sheet = doc.sheetsById[SHEET_ID];
+    const result = await sheet.addRow({
+      Email: val.email, 
+      Phone: val.phone, 
+      Wallet: val.wallet, 
+      Link: val.link
     })
     .then(_=> {
       history.push('/success');
       setLoading(false);
+    })
+    .catch(e => {
+      console.error('Error: ', e);
     })
   }
 
@@ -217,11 +234,9 @@ export default function Introduction() {
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
               </Form.Item>
-              { isVerified &&
-                <Form.Item>
-                  <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
-                </Form.Item>
-              }
+              <Form.Item>
+                <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
+              </Form.Item>
             </Form>
             <ReCAPTCHA
               style={{ display: "inline-block" }}
@@ -253,10 +268,7 @@ export default function Introduction() {
         <div className="steps-content">
           <p className='intro__title'>Step To Claim Airdrop</p>
           {steps[current].content}
-
-          <div style={{cursor: 'pointer'}} onClick={() => (current + 1)}>  
-            
-          </div>
+          <div style={{cursor: 'pointer'}} onClick={() => (current + 1)}></div>
         </div>
         <div className="steps-action">
           <Row align='middle'>
