@@ -7,10 +7,10 @@ import About from './pages/About';
 import Introduction from './pages/HowToGet/introduction';
 import Success from './pages/Success';
 import CreateWallet from './pages/CreateWallet';
-import { 
+import {
   BrowserRouter as Router,
-  Route, 
-  Switch  
+  Route,
+  Switch
 } from 'react-router-dom'
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
         <Header>
           <Switch>
             <Route path='/' exact component={About} />
-            <Route path='/claimairdrop' component={Introduction} />
+            <Route path='/claim-$sel' component={Introduction} />
             <Route path='/success' component={Success} />
             <Route path='/createwallet' component={CreateWallet} />
           </Switch>
