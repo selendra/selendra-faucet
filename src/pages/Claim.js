@@ -1,24 +1,21 @@
-import { Row, Col, Table, Steps, Button, Form, Input, Modal } from 'antd'
+import { Row, Col, Table, Steps, Button, Form, Input } from 'antd'
 import { useRef, useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
-import { ReactComponent as PIC } from '../../assets/pic.svg'
+import { ReactComponent as PIC } from '../assets/pic.svg'
 import { useHistory } from 'react-router'
-import Next from '../../assets/next.png'
-import Back from '../../assets/back.png'
+import Next from '../assets/next.png'
+import Back from '../assets/back.png'
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { NavLink } from 'react-router-dom';
 
-export default function Introduction() {
+export default function Claim() {
   const _reCaptchaRef = useRef();
   const history = useHistory();
   const { Step } = Steps;
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [modalCreate, setModalCreate] = useState(false);
   const [current, setCurrent] = useState(0);
-  const handleCancel = () => {
-    setCurrent(false);
-  }
+  
   const handleChange = (value) => {
     // if value is null recaptcha expired
     if (value !== null) { 
@@ -183,7 +180,7 @@ export default function Introduction() {
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Create BEP-20 Wallet</p>
             <p className='intro__des'>To recived the airdrop you need to have a Selendra BEP-20 wallet.
-            Our Selendra airdrop is performing at Binace Smart chain.<br/>
+            Our Selendra airdrop is performing at Binace Smart chain.
             Binance Smart Chain has a BEP20 token standard that functions similarly to Ethereum’s ERC20 standard. BEP20 is a developer-friendly token standard that allows anyone to deploy fungible digital currencies or tokens on Binance Smart Chain.</p>
             <div className='intro__btn'>
               <Button>
@@ -279,7 +276,6 @@ export default function Introduction() {
           </Col>
         </Row>
         <div className="steps-content">
-          <p className='intro__title'>Step To Claim Airdrop</p>
           {steps[current].content}
           <div style={{cursor: 'pointer'}} onClick={() => (current + 1)}></div>
         </div>
@@ -304,7 +300,6 @@ export default function Introduction() {
           </Row>
         </div>
       </div>
-      
     </div>
   )
 }
