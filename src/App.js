@@ -6,6 +6,7 @@ import axios from 'axios';
 import About from './pages/About';
 import Introduction from './pages/HowToGet/introduction';
 import Success from './pages/Success';
+import CreateWallet from './pages/CreateWallet';
 import { 
   BrowserRouter as Router,
   Route, 
@@ -21,6 +22,7 @@ export default function App() {
             <Route path='/' exact component={About} />
             <Route path='/claimairdrop' component={Introduction} />
             <Route path='/success' component={Success} />
+            <Route path='/createwallet' component={CreateWallet} />
           </Switch>
         </Header>
       </Router>
