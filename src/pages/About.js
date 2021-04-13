@@ -19,7 +19,7 @@ export default function About() {
             </div>
             <div className='about__btn'>
               <Button>
-                <NavLink to='/claimairdrop'>Claim $SEL here</NavLink>
+                <NavLink to='/claim-$sel'>Claim $SEL here</NavLink>
               </Button>
             </div>
           </Col>

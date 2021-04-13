@@ -9,7 +9,7 @@ import About from './About'
 
 export default function Header(props) {
   const { Content } = Layout;
-  const [visible, setVisible] = React.useState(false); 
+  const [visible, setVisible] = React.useState(false);
   const [modalVisible, setModalVisible] = React.useState(false);
   const showDrawer = () => {
     setVisible(true);
@@ -26,10 +26,10 @@ export default function Header(props) {
         onClose={onClose}
         visible={visible}
         width={300}
-        bodyStyle={{background: '#1A2F3C'}}
+        bodyStyle={{ background: '#1A2F3C' }}
       >
-        <img src={logo} className='header__logo' alt='logo'/>
-        <div style={{padding: '1rem 0'}} />
+        <img src={logo} className='header__logo' alt='logo' />
+        <div style={{ padding: '1rem 0' }} />
         <NavLink to='/claimairdrop' onClick={onClose}>
           <p className='header__navItem'>How To Get</p>
         </NavLink>
@@ -42,12 +42,12 @@ export default function Header(props) {
           <Row justify='space-between' align='middle' className='header__row'>
             <Col xs={12} sm={12} md={12} lg={12} xl={12}>
               <NavLink to='/'>
-                <img src={logo} className='header__logo' alt='logo'/>
+                <img src={logo} className='header__logo' alt='logo' />
               </NavLink>
             </Col>
             <Col xs={0} sm={0} md={12} lg={12} xl={12}>
-              <Row justify='space-between' style={{width: 300}}>
-                <NavLink to='/claimairdrop' style={{color: '#fff'}}>
+              <Row justify='space-between' style={{ width: 300 }}>
+                <NavLink to='/claim-$sel' style={{ color: '#fff' }}>
                   <p className='header__item'>How To Get</p>
                 </NavLink>
                 <p className='header__item' onClick={() => setModalVisible(true)}>About</p>
@@ -55,7 +55,7 @@ export default function Header(props) {
             </Col>
             <Col xs={12} sm={12} md={0} lg={0} xl={0}>
               <Row justify='end'>
-                <Menu style={{width: '44px', height: '44px', cursor: 'pointer'}} onClick={showDrawer} />
+                <Menu style={{ width: '44px', height: '44px', cursor: 'pointer' }} onClick={showDrawer} />
               </Row>
             </Col>
           </Row>
