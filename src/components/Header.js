@@ -30,8 +30,8 @@ export default function Header(props) {
       >
         <img src={logo} className='header__logo' alt='logo' />
         <div style={{ padding: '1rem 0' }} />
-        <NavLink to='/claimairdrop' onClick={onClose}>
-          <p className='header__navItem'>How To Get</p>
+        <NavLink to='/claim-$sel' onClick={onClose}>
+          <p className='header__navItem'>Claim $SEL</p>
         </NavLink>
         <NavLink to='/' onClick={() => setModalVisible(true)}>
           <p className='header__navItem'>About</p>
@@ -48,7 +48,7 @@ export default function Header(props) {
             <Col xs={0} sm={0} md={12} lg={12} xl={12}>
               <Row justify='space-between' style={{ width: 300 }}>
                 <NavLink to='/claim-$sel' style={{ color: '#fff' }}>
-                  <p className='header__item'>How To Get</p>
+                  <p className='header__item'>Claim $SEL</p>
                 </NavLink>
                 <p className='header__item' onClick={() => setModalVisible(true)}>About</p>
               </Row>
