@@ -1,6 +1,7 @@
 import { Row, Col, Button, Modal } from 'antd';
 import { ReactComponent as PIC } from '../assets/pic.svg'
 import { useState } from 'react';
+import Artwork from '../assets/artwork.png';
 
 export default function CreateWallet() {
   const [visible, setVisible] = useState(false);
@@ -99,7 +100,7 @@ export default function CreateWallet() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <PIC style={{marginLeft: '4.4rem'}} className='about__pic' />
+              <img src={Artwork} className='about__pic'/>
             </Row>
           </Col>
         </Row>

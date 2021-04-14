@@ -7,6 +7,7 @@ import Next from '../assets/next.png'
 import Back from '../assets/back.png'
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { NavLink } from 'react-router-dom';
+import Artwork from '../assets/artwork.png';
 
 export default function Claim() {
   const _reCaptchaRef = useRef();
@@ -314,7 +315,7 @@ export default function Claim() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <PIC style={{marginLeft: '4.4rem'}} className='about__pic' />
+              <img src={Artwork} className='about__pic'/>
             </Row>
           </Col>
         </Row>
@@ -334,7 +335,7 @@ export default function Claim() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <PIC style={{marginLeft: '4.4rem'}} className='about__pic' />
+              <img src={Artwork} className='about__pic'/>
             </Row>
           </Col>
         </Row>
@@ -345,7 +346,7 @@ export default function Claim() {
       content: 
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={0} sm={0} md={24} lg={12} xl={12}>
-            <PIC />
+            <img src={Artwork} className='about__pic'/>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Field the form with your wallet to receive your $SEL</p>
