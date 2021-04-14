@@ -217,13 +217,13 @@ export default function Claim() {
     },
   ];
 
-  const shareMSG = 'Follow Selendra and get some $SEL for free. Share  https://twitter.com/selendraorg to get some more $SEL. Claim it at https://selendra.org/airdrop';
+  const shareMSG = 'Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at airdrop.selendra.org. Join t.me/selendraorg to connect with others in the community.';
   const onTwitter = () => {
-    window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fselendra.org/airdrop%2F&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fairdrop.selendra.org%2F&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
 
   const onFacebook = () => {
-    window.open(`http://www.facebook.com/sharer.php?u=http%3A%2F%2Fselendra.org/airdrop&quote=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
+    window.open(`http://www.facebook.com/sharer.php?u=http%3A%2F%2Fairdrop.selendra.org&quote=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
   }
 
   const onTelegram = () => {
