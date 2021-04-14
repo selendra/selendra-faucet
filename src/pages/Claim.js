@@ -1,4 +1,4 @@
-import { Row, Col, Table, Steps, Button, Form, Input } from 'antd'
+import { Row, Col, Table, Steps, Button, Form, Input, Radio } from 'antd'
 import { useRef, useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { ReactComponent as PIC } from '../assets/pic.svg'
@@ -15,6 +15,12 @@ export default function Claim() {
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const [current, setCurrent] = useState(0);
+  const [value, setValue] = useState(1);
+
+  const onChangeRadio = e => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
+  };
   
   const handleChange = (value) => {
     // if value is null recaptcha expired
@@ -84,10 +90,112 @@ export default function Claim() {
       datetime: 'July 2022'
     },
   ];
+
+  const dataSource2 = [
+    {
+      key: '1',
+      name: 'Airdrop',
+      age: 'SEL',
+      address: '%',
+    },
+    {
+      key: '2',
+      name: '1',
+      age: '7,539,822',
+      address: '0.24',
+      datetime: 'October 2022'
+    },
+    {
+      key: '3',
+      name: '2',
+      age: '6,597,345',
+      address: '0.21',
+      datetime: 'January 2023'
+    },
+    {
+      key: '4',
+      name: '3',
+      age: '5,654,867',
+      address: '0.18',
+      datetime: 'April 2023'
+    },
+    {
+      key: '5',
+      name: '4',
+      age: '4,712,389',
+      address: '0.15',
+      datetime: 'July 2023'
+    },
+    {
+      key: '6',
+      name: '5',
+      age: '3,759,911',
+      address: '0.12',
+      datetime: 'October 2023'
+    },
+    {
+      key: '7',
+      name: '6',
+      age: '3,141,593',
+      address: '0.10',
+      datetime: 'January 2024'
+    },
+  ];
+
+  const dataSource3 = [
+    {
+      key: '1',
+      name: 'Airdrop',
+      age: 'SEL',
+      address: '%',
+    },
+    {
+      key: '2',
+      name: '1',
+      age: '7,539,822',
+      address: '0.24',
+      datetime: 'April 2024'
+    },
+    {
+      key: '3',
+      name: '2',
+      age: '6,597,345',
+      address: '0.21',
+      datetime: 'July 2024'
+    },
+    {
+      key: '4',
+      name: '3',
+      age: '5,654,867',
+      address: '0.18',
+      datetime: 'October 2024'
+    },
+    {
+      key: '5',
+      name: '4',
+      age: '4,712,389',
+      address: '0.15',
+      datetime: 'January 2025'
+    },
+    {
+      key: '6',
+      name: '5',
+      age: '3,759,911',
+      address: '0.12',
+      datetime: 'April 2025'
+    },
+    {
+      key: '7',
+      name: '6',
+      age: '3,141,593',
+      address: '0.10',
+      datetime: 'July 2025'
+    },
+  ];
   
   const columns = [
     {
-      title: 'To',
+      title: `Stage${value}`,
       dataIndex: 'name',
       key: 'name',
     },
@@ -125,7 +233,7 @@ export default function Claim() {
     const SPREADSHEET_ID = process.env.REACT_APP_SPREADSHEET_ID;
     const SHEET_ID = process.env.REACT_APP_SHEET_ID;
     const CLIENT_EMAIL = process.env.REACT_APP_CLIENT_EMAIL;
-    const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY.replace(/\\n/g, '\n')
+    const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY.replace(/\\n/g, '\n');
     const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
     setLoading(true);
     await doc.useServiceAccountAuth({
@@ -146,8 +254,8 @@ export default function Claim() {
       history.push('/success');
       setLoading(false);
     })
-    .catch(e => {
-      console.error('Error: ', e);
+    .catch(err => {
+      console.error('Error: ', err);
     })
   }
 
@@ -169,7 +277,21 @@ export default function Claim() {
             <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 of SEL tokens. Each session will last as long as 3 months. The first event will take place during Khmer New Year of the year 2021. Airdrop event will look like in the table.</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={{span:12, offset: 1}} xl={{span:12, offset: 1}}>
-            <Table dataSource={dataSource} columns={columns} pagination={false}/>
+            <Radio.Group onChange={onChangeRadio} value={value}>
+              <Radio value={1} style={{color: '#fff'}}>Stage1</Radio>
+              <Radio value={2} style={{color: '#fff'}}>Stage2</Radio>
+              <Radio value={3} style={{color: '#fff'}}>Stage3</Radio>
+            </Radio.Group>
+            <div style={{paddingBottom: '10px'}}/>
+            {value === 1 && (
+              <Table dataSource={dataSource} columns={columns} pagination={false}/>
+            )}
+            { value === 2 && (
+              <Table dataSource={dataSource2} columns={columns} pagination={false}/>
+            )}
+            { value === 3 && (
+              <Table dataSource={dataSource3} columns={columns} pagination={false}/>
+            )}
           </Col>
         </Row>,
     },
