@@ -103,6 +103,7 @@
 }
 .about__pic {
   width: 620px;
+  height: 620px;
   object-fit: contain;
   margin: 0!important;
 }
@@ -135,6 +136,7 @@
   .about__pic {
     padding-top: 20px;
     width: 320px;
+    height: 320px;
     object-fit: contain;
     margin: 0!important;
   }
