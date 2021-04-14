@@ -1,5 +1,6 @@
 import { Row, Col, Button } from 'antd'
 import { ReactComponent as PIC } from '../assets/pic.svg'
+import Artwork from '../assets/artwork.png'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import AboutUs from '../components/About'
@@ -38,7 +39,7 @@ export default function About() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <PIC style={{ marginLeft: '4.4rem' }} className='about__pic' />
+              <img src={Artwork} className='about__pic'/>
             </Row>
           </Col>
         </Row>
