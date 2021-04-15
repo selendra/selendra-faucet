@@ -1,15 +1,12 @@
-import { Row, Col, Button } from 'antd'
-import { ReactComponent as PIC } from '../assets/pic.svg'
-import Artwork from '../assets/artwork.png'
-import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { Row, Col, Button } from 'antd'
+import { NavLink } from 'react-router-dom'
 import AboutUs from '../components/About'
+import Artwork from '../assets/artwork.png'
 
 export default function About() {
   const [isReadmore, setIsReadmore] = useState(false);
-  const handleReadmore = () => {
-    setIsReadmore(true);
-  }
+
   return (
     <div className='about'>
       <div className='about__container'>
@@ -19,7 +16,7 @@ export default function About() {
             <p className='about__titlemd'>AirDrop</p>
             <div className='about__des'>
               <p>Selendra is a blockchain network built with Substrate framework that support the building of business use-cases with developability and interoperability for developers to launch their applications in a decentralized manner with minimal learning curve. Developers can use tools they love to build business logic, user-friendly interfaces and take full advantage of tokeneconomic for their platform ecosystem and users’ expansion.
-                <Button type='link' style={{paddingLeft: '0'}} onClick={handleReadmore}>...READ MORE</Button>
+                <Button type='link' style={{paddingLeft: '0'}} onClick={() => setIsReadmore(true)}>...READ MORE</Button>
               </p>
               <AboutUs visible={isReadmore} setVisible={setIsReadmore}/>
             </div>
