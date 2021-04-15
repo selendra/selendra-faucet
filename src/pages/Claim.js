@@ -1,11 +1,10 @@
 import { useRef, useState } from 'react';
-import { Row, Col, Table, Steps, Button, Form, Input, Radio } from 'antd';
+import { Row, Col, Steps, Button, Form, Input, Radio } from 'antd';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-import { ReactComponent as PIC } from '../assets/pic.svg';
 import Next from '../assets/next.png';
 import Back from '../assets/back.png';
 import ShareOnSocial from '../assets/share.png';
@@ -24,8 +23,7 @@ export default function Claim() {
   const [current, setCurrent] = useState(0);
   const [value, setValue] = useState(1);
 
-  const onChangeRadio = e => {
-    console.log('radio checked', e.target.value);
+  const onChangeRadio = (e) => {
     setValue(e.target.value);
   };
   
@@ -37,192 +35,6 @@ export default function Claim() {
       setIsVerified(false)
     }
   };
-
-  const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
-  };
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Airdrop',
-      age: 'SEL',
-      address: '%',
-    },
-    {
-      key: '2',
-      name: '1',
-      age: '7,539,822',
-      address: '0.24',
-      datetime: 'April 2021'
-    },
-    {
-      key: '3',
-      name: '2',
-      age: '6,597,345',
-      address: '0.21',
-      datetime: 'July 2021'
-    },
-    {
-      key: '4',
-      name: '3',
-      age: '5,654,867',
-      address: '0.18',
-      datetime: 'October 2021'
-    },
-    {
-      key: '5',
-      name: '4',
-      age: '4,712,389',
-      address: '0.15',
-      datetime: 'January 2022'
-    },
-    {
-      key: '6',
-      name: '5',
-      age: '3,759,911',
-      address: '0.12',
-      datetime: 'April 2022'
-    },
-    {
-      key: '7',
-      name: '6',
-      age: '3,141,593',
-      address: '0.10',
-      datetime: 'July 2022'
-    },
-  ];
-
-  const dataSource2 = [
-    {
-      key: '1',
-      name: 'Airdrop',
-      age: 'SEL',
-      address: '%',
-    },
-    {
-      key: '2',
-      name: '1',
-      age: '7,539,822',
-      address: '0.24',
-      datetime: 'October 2022'
-    },
-    {
-      key: '3',
-      name: '2',
-      age: '6,597,345',
-      address: '0.21',
-      datetime: 'January 2023'
-    },
-    {
-      key: '4',
-      name: '3',
-      age: '5,654,867',
-      address: '0.18',
-      datetime: 'April 2023'
-    },
-    {
-      key: '5',
-      name: '4',
-      age: '4,712,389',
-      address: '0.15',
-      datetime: 'July 2023'
-    },
-    {
-      key: '6',
-      name: '5',
-      age: '3,759,911',
-      address: '0.12',
-      datetime: 'October 2023'
-    },
-    {
-      key: '7',
-      name: '6',
-      age: '3,141,593',
-      address: '0.10',
-      datetime: 'January 2024'
-    },
-  ];
-
-  const dataSource3 = [
-    {
-      key: '1',
-      name: 'Airdrop',
-      age: 'SEL',
-      address: '%',
-    },
-    {
-      key: '2',
-      name: '1',
-      age: '7,539,822',
-      address: '0.24',
-      datetime: 'April 2024'
-    },
-    {
-      key: '3',
-      name: '2',
-      age: '6,597,345',
-      address: '0.21',
-      datetime: 'July 2024'
-    },
-    {
-      key: '4',
-      name: '3',
-      age: '5,654,867',
-      address: '0.18',
-      datetime: 'October 2024'
-    },
-    {
-      key: '5',
-      name: '4',
-      age: '4,712,389',
-      address: '0.15',
-      datetime: 'January 2025'
-    },
-    {
-      key: '6',
-      name: '5',
-      age: '3,759,911',
-      address: '0.12',
-      datetime: 'April 2025'
-    },
-    {
-      key: '7',
-      name: '6',
-      age: '3,141,593',
-      address: '0.10',
-      datetime: 'July 2025'
-    },
-  ];
-  
-  const columns = [
-    {
-      title: `Stage${value}`,
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: '31,415,927',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Percentages',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'DateTime',
-      dataIndex: 'datetime',
-      key: 'datetime',
-    },
-  ];
 
   const shareMSG = 'Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at airdrop.selendra.org. Join t.me/selendraorg to connect with others in the community.';
   const onTwitter = () => {
@@ -242,6 +54,7 @@ export default function Claim() {
     const SHEET_ID = process.env.REACT_APP_SHEET_ID;
     const CLIENT_EMAIL = process.env.REACT_APP_CLIENT_EMAIL;
     const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY.replace(/\\n/g, '\n');
+
     const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
     setLoading(true);
     await doc.useServiceAccountAuth({
@@ -252,7 +65,7 @@ export default function Claim() {
     await doc.loadInfo();
 
     const sheet = doc.sheetsById[SHEET_ID];
-    const result = await sheet.addRow({
+    await sheet.addRow({
       Email: val.email, 
       Phone: val.phone, 
       Wallet: val.wallet, 
@@ -330,7 +143,7 @@ export default function Claim() {
       ,
     },
     {
-      title: 'Share Link',
+      title: 'Share On Social', 
       content: 
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -340,7 +153,7 @@ export default function Claim() {
               <Button onClick={onFacebook}>Post in facebook</Button>  
               <Button onClick={onTelegram}>Join telegram community</Button>
             </div>
-            <p>Note: Join Selendraorg community will get extra 5 $SEL, Each unique link shared will get extra 5 $SEL, Make Youtube video about Selendra will get +50 $SEL</p>
+            <p>Note: Join Selendra community will get extra 5 $SEL, Each unique link shared will get extra 5 $SEL, Make Youtube video about Selendra will get +50 $SEL</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
@@ -362,10 +175,10 @@ export default function Claim() {
             <br />
             <Form className='intro__input' onFinish={onSubmit}>
               <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
-                <Input placeholder="Email (by submitting will get +5 $SEL)"/>
+                <Input placeholder="Email (get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='phone' rules={[{ required: true }]}>
-                <Input placeholder="Phone Number (by submitting will get +5 $SEL)"/>
+                <Input placeholder="Phone Number (get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
                 <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"/>
@@ -393,7 +206,7 @@ export default function Claim() {
   ];
 
   const onChange = (current) => {
-    setCurrent(current)
+    setCurrent(current);
   }
 
   return (

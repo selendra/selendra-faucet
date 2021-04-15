@@ -1,7 +1,5 @@
-import { Row, Col, Button, Modal } from 'antd';
-import { ReactComponent as PIC } from '../assets/pic.svg'
 import { useState } from 'react';
-import Artwork from '../assets/artwork.png';
+import { Row, Col, Button, Modal } from 'antd';
 import CreateWalletArtwork from '../assets/createwallet.png';
 
 export default function CreateWallet() {

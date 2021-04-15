@@ -1,12 +1,12 @@
-import { Row, Col, Modal } from 'antd'
+import { useState } from 'react'
+import { Row, Col } from 'antd'
+import About from './About'
 import selendra from '../assets/selendra.png'
 import { ReactComponent as Medium } from '../assets/medium.svg'
 import { ReactComponent as Telegram } from '../assets/telegram.svg'
 import { ReactComponent as Twitter } from '../assets/twitter.svg'
 import { ReactComponent as Facebook } from '../assets/facebook.svg'
 import { ReactComponent as Linkedin } from '../assets/linkedin.svg'
-import { useState } from 'react'
-import About from './About'
 
 export default function Footer() {
   const [visible, setVisible] = useState(false);
