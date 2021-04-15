@@ -11,6 +11,9 @@ import Back from '../assets/back.png';
 import ShareOnSocial from '../assets/share.png';
 import CreateWallet from '../assets/createwallet.png';
 import Crypto from '../assets/Crypto.png';
+import Airdrop1 from '../assets/airdrop1.png';
+import Airdrop2 from '../assets/airdrop2.png';
+import Airdrop3 from '../assets/airdrop3.png';
 
 export default function Claim() {
   const _reCaptchaRef = useRef();
@@ -34,6 +37,7 @@ export default function Claim() {
       setIsVerified(false)
     }
   };
+
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -281,21 +285,23 @@ export default function Claim() {
             <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 of SEL tokens. Each session will last as long as 3 months. The first event will take place during Khmer New Year of the year 2021. Airdrop event will look like in the table.</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={{span:12, offset: 1}} xl={{span:12, offset: 1}}>
-            <Radio.Group onChange={onChangeRadio} value={value}>
-              <Radio value={1} style={{color: '#fff'}}>Stage1</Radio>
-              <Radio value={2} style={{color: '#fff'}}>Stage2</Radio>
-              <Radio value={3} style={{color: '#fff'}}>Stage3</Radio>
-            </Radio.Group>
-            <div style={{paddingBottom: '10px'}}/>
-            {value === 1 && (
-              <Table dataSource={dataSource} columns={columns} pagination={false}/>
-            )}
-            { value === 2 && (
-              <Table dataSource={dataSource2} columns={columns} pagination={false}/>
-            )}
-            { value === 3 && (
-              <Table dataSource={dataSource3} columns={columns} pagination={false}/>
-            )}
+            <Row justify='center'>
+              <Radio.Group onChange={onChangeRadio} value={value}>
+                <Radio value={1} style={{color: '#fff'}}>Stage1</Radio>
+                <Radio value={2} style={{color: '#fff'}}>Stage2</Radio>
+                <Radio value={3} style={{color: '#fff'}}>Stage3</Radio>
+              </Radio.Group>
+              <div style={{paddingBottom: '10px'}}/>
+              {value === 1 && (
+                <img src={Airdrop1} className='about__pic airdrop'/>
+              )}
+              { value === 2 && (
+                <img src={Airdrop2} className='about__pic airdrop'/>
+              )}
+              { value === 3 && (
+                <img src={Airdrop3} className='about__pic airdrop'/>
+              )}
+            </Row>
           </Col>
         </Row>,
     },
@@ -362,11 +368,12 @@ export default function Claim() {
                 <Input placeholder="Phone Number (by submitting will get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
-                <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc.....)"/>
-                <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet</NavLink>
+                <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"/>
+                <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
               </Form.Item>
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
+                <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
               </Form.Item>
               { isVerified &&
                 <Form.Item>
