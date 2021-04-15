@@ -1,16 +1,19 @@
-import { Row, Col, Table, Steps, Button, Form, Input, Radio } from 'antd'
-import { useRef, useState } from 'react'
+import { useRef, useState } from 'react';
+import { Row, Col, Table, Steps, Button, Form, Input, Radio } from 'antd';
 import ReCAPTCHA from "react-google-recaptcha";
-import { ReactComponent as PIC } from '../assets/pic.svg'
-import { useHistory } from 'react-router'
-import Next from '../assets/next.png'
-import Back from '../assets/back.png'
-import { GoogleSpreadsheet } from "google-spreadsheet";
+import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import Artwork from '../assets/artwork.png';
+import { GoogleSpreadsheet } from "google-spreadsheet";
+
+import { ReactComponent as PIC } from '../assets/pic.svg';
+import Next from '../assets/next.png';
+import Back from '../assets/back.png';
 import ShareOnSocial from '../assets/share.png';
 import CreateWallet from '../assets/createwallet.png';
 import Crypto from '../assets/Crypto.png';
+import Airdrop1 from '../assets/airdrop1.png';
+import Airdrop2 from '../assets/airdrop2.png';
+import Airdrop3 from '../assets/airdrop3.png';
 
 export default function Claim() {
   const _reCaptchaRef = useRef();
@@ -34,6 +37,7 @@ export default function Claim() {
       setIsVerified(false)
     }
   };
+
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -281,21 +285,23 @@ export default function Claim() {
             <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 of SEL tokens. Each session will last as long as 3 months. The first event will take place during Khmer New Year of the year 2021. Airdrop event will look like in the table.</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={{span:12, offset: 1}} xl={{span:12, offset: 1}}>
-            <Radio.Group onChange={onChangeRadio} value={value}>
-              <Radio value={1} style={{color: '#fff'}}>Stage1</Radio>
-              <Radio value={2} style={{color: '#fff'}}>Stage2</Radio>
-              <Radio value={3} style={{color: '#fff'}}>Stage3</Radio>
-            </Radio.Group>
-            <div style={{paddingBottom: '10px'}}/>
-            {value === 1 && (
-              <Table dataSource={dataSource} columns={columns} pagination={false}/>
-            )}
-            { value === 2 && (
-              <Table dataSource={dataSource2} columns={columns} pagination={false}/>
-            )}
-            { value === 3 && (
-              <Table dataSource={dataSource3} columns={columns} pagination={false}/>
-            )}
+            <Row justify='center'>
+              <Radio.Group onChange={onChangeRadio} value={value}>
+                <Radio value={1} style={{color: '#fff'}}>Stage1</Radio>
+                <Radio value={2} style={{color: '#fff'}}>Stage2</Radio>
+                <Radio value={3} style={{color: '#fff'}}>Stage3</Radio>
+              </Radio.Group>
+              <div style={{paddingBottom: '10px'}}/>
+              {value === 1 && (
+                <img src={Airdrop1} className='about__pic airdrop'/>
+              )}
+              { value === 2 && (
+                <img src={Airdrop2} className='about__pic airdrop'/>
+              )}
+              { value === 3 && (
+                <img src={Airdrop3} className='about__pic airdrop'/>
+              )}
+            </Row>
           </Col>
         </Row>,
     },
@@ -305,9 +311,8 @@ export default function Claim() {
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <p className='intro__subTitle'>Create BEP-20 Wallet</p>
-            <p className='intro__des'>To recived the airdrop you need to have a Selendra BEP-20 wallet.
-            Our Selendra airdrop is performing at Binace Smart chain.
-            Binance Smart Chain has a BEP20 token standard that functions similarly to Ethereum’s ERC20 standard. BEP20 is a developer-friendly token standard that allows anyone to deploy fungible digital currencies or tokens on Binance Smart Chain.</p>
+            <p className='intro__des'>To recived the airdrop you need to have a Selendra BEP-20 wallet. Our Selendra airdrop is performing at Binace Smart chain. Binance Smart Chain has a BEP20 token standard that functions similarly to Ethereum’s ERC20 standard. BEP20 is a developer-friendly token standard that allows anyone to deploy fungible digital currencies or tokens on Binance Smart Chain.</p>
+            <p className='intro__des'>The SEL BEP-20 token will be swapped for SEL native token when Selendra mainnet launches. The swap will be at 1:1 ratio. There will be nothing change on the value.</p>
             <div className='intro__btn'>
               <Button>
                 <NavLink to='/createwallet' target="_blank">
@@ -335,6 +340,7 @@ export default function Claim() {
               <Button onClick={onFacebook}>Post in facebook</Button>  
               <Button onClick={onTelegram}>Join telegram community</Button>
             </div>
+            <p>Note: Join Selendraorg community will get extra 5 $SEL, Each unique link shared will get extra 5 $SEL, Make Youtube video about Selendra will get +50 $SEL</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
@@ -356,16 +362,18 @@ export default function Claim() {
             <br />
             <Form className='intro__input' onFinish={onSubmit}>
               <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
-                <Input placeholder="Email"/>
+                <Input placeholder="Email (by submitting will get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='phone' rules={[{ required: true }]}>
-                <Input placeholder="Phone Number"/>
+                <Input placeholder="Phone Number (by submitting will get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
-                <Input placeholder="Wallet Address"/>
+                <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"/>
+                <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
               </Form.Item>
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
+                <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
               </Form.Item>
               { isVerified &&
                 <Form.Item>
