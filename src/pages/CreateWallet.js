@@ -53,7 +53,7 @@ export default function CreateWallet() {
       <img src='https://user-images.githubusercontent.com/38589050/114802246-9348b300-9dc7-11eb-98a8-d4c1a0967840.jpg'/>
       <p className="createwallet__subTitle">Adding BEP20 to your wallet</p>
       <p>If you do not see your BEP20 token in your address yet, try to do a search or paste the BEP20 contract in the search bar.</p>
-      <img src='https://user-images.githubusercontent.com/38589050/114802265-9cd21b00-9dc7-11eb-902d-2935a148284c.jpg'/>
+      <img src='https://user-images.githubusercontent.com/6874962/114149499-2e173c80-9945-11eb-83df-a1578d08479e.png'/>
       <p>Open your Smart Chain wallet, tap on Receive to get your BEP20 address.BNB is the main token on Binance Smart chain. Tap on Copy or Share your QR code for the Smart Chain address.</p>
       <img src='https://user-images.githubusercontent.com/6874962/114149539-3a02fe80-9945-11eb-8b80-a574a287a18a.png'/>
     </div>
