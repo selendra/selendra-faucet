@@ -112,7 +112,7 @@
     padding: 0 10px;
   }
   .about__title {
-    font-size: 49px!important;
+    font-size: 52px!important;
     margin-bottom: 40px!important;
   }   
   .about__titlemd {
@@ -211,7 +211,8 @@
     font-size: 32px!important;
   }
   .intro__subTitle {
-    font-size: 24px!important;
+    font-size: 32px!important;
+    font-weight: 700;
   }
   .intro__des {
     font-size: 18px!important;

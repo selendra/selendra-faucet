@@ -2,6 +2,7 @@ import { Row, Col, Button, Modal } from 'antd';
 import { ReactComponent as PIC } from '../assets/pic.svg'
 import { useState } from 'react';
 import Artwork from '../assets/artwork.png';
+import CreateWalletArtwork from '../assets/createwallet.png';
 
 export default function CreateWallet() {
   const [visible, setVisible] = useState(false);
@@ -47,13 +48,14 @@ export default function CreateWallet() {
       <p>BEP20 is similar to <a href="https://academy.binance.com/glossary/erc-20" target="_blank">ERC20</a> tokens that are issued and implemented on the <a href="https://academy.binance.com/blockchain/what-is-ethereum" target="_blank">Ethereum</a> blockchain.</p>
       <p>Bitiel Wallet team have implemented Binance Smart Chain to support BEP20 tokens.</p>
       <p className="createwallet__subTitle">How to Get BEP20 Address On Bitriel?</p>
+      <p>For Andriod Devices: <a href="https://play.google.com/store/apps/details?id=com.selendra.secure_wallet" target='_blank'>https://play.google.com/store/apps/details?id=com.selendra.secure_wallet</a></p>
       <img src='https://user-images.githubusercontent.com/6874962/114149329-fc9e7100-9944-11eb-97c1-d5cbe86cfa18.png'/>
       <p className="createwallet__subTitle">How to Get BEP20 Address?</p>
       <p>Smart Chain wallet will be enabled by default as soon as you Create a new wallet.</p>
-      <img src='https://user-images.githubusercontent.com/6874962/114149395-0e801400-9945-11eb-937c-148e74d2deef.png'/>
+      <img src='https://user-images.githubusercontent.com/38589050/114802246-9348b300-9dc7-11eb-98a8-d4c1a0967840.jpg'/>
       <p className="createwallet__subTitle">Adding BEP20 to your wallet</p>
       <p>If you do not see your BEP20 token in your address yet, try to do a search or paste the BEP20 contract in the search bar.</p>
-      <img src='https://user-images.githubusercontent.com/6874962/114149499-2e173c80-9945-11eb-83df-a1578d08479e.png'/>
+      <img src='https://user-images.githubusercontent.com/38589050/114802265-9cd21b00-9dc7-11eb-902d-2935a148284c.jpg'/>
       <p>Open your Smart Chain wallet, tap on Receive to get your BEP20 address.BNB is the main token on Binance Smart chain. Tap on Copy or Share your QR code for the Smart Chain address.</p>
       <img src='https://user-images.githubusercontent.com/6874962/114149539-3a02fe80-9945-11eb-8b80-a574a287a18a.png'/>
     </div>
@@ -84,7 +86,7 @@ export default function CreateWallet() {
     <div className='about'>
       <div className='about__container'>
         <Row align='middle' style={{minHeight: '70vh'}}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={24} lg={11} xl={11}>
             <p className='intro__subTitle'>How to Install and Create an Selendra Metamask Wallet Account</p>
             <p className='intro__des'>Get Started:</p>
             <div className='intro__btn'>
@@ -98,9 +100,9 @@ export default function CreateWallet() {
               </Button>
             </div>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={24} lg={{span:12, offset:1}} xl={{span:12, offset:1}}>
             <Row justify='center'>
-              <img src={Artwork} className='about__pic'/>
+              <img src={CreateWalletArtwork} className='about__pic'/>
             </Row>
           </Col>
         </Row>

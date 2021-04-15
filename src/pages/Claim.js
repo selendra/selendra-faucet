@@ -8,6 +8,9 @@ import Back from '../assets/back.png'
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { NavLink } from 'react-router-dom';
 import Artwork from '../assets/artwork.png';
+import ShareOnSocial from '../assets/share.png';
+import CreateWallet from '../assets/createwallet.png';
+import Crypto from '../assets/Crypto.png';
 
 export default function Claim() {
   const _reCaptchaRef = useRef();
@@ -315,7 +318,7 @@ export default function Claim() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <img src={Artwork} className='about__pic'/>
+              <img src={CreateWallet} className='about__pic'/>
             </Row>
           </Col>
         </Row>
@@ -335,7 +338,7 @@ export default function Claim() {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
             <Row justify='center'>
-              <img src={Artwork} className='about__pic'/>
+              <img src={ShareOnSocial} className='about__pic'/>
             </Row>
           </Col>
         </Row>
@@ -346,9 +349,9 @@ export default function Claim() {
       content: 
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={0} sm={0} md={24} lg={12} xl={12}>
-            <img src={Artwork} className='about__pic'/>
+            <img src={Crypto} className='about__pic'/>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} md={24} lg={{span: 11, offset: 1}} xl={{span: 11, offset: 1}}>
             <p className='intro__subTitle'>Field the form with your wallet to receive your $SEL</p>
             <br />
             <Form className='intro__input' onFinish={onSubmit}>
@@ -394,7 +397,6 @@ export default function Claim() {
               {steps.map(item => (
                 <Step key={item.title} title={item.title} />
               ))}
-              
             </Steps>
           </Col>
         </Row>
@@ -404,14 +406,14 @@ export default function Claim() {
         </div>
         <div className="steps-action">
           <Row align='middle'>
-            <Col span={12}>
+            <Col span={12} style={{paddingTop: '10px'}}>
               {current > 0 && (
                 <Button type='link' onClick={() => prev()}>
                   <img src={Back} alt='back' style={{marginBottom: '4px'}} /><span style={{fontSize: '16px', fontWeight: '700', marginLeft: '10px'}}>Previous</span>
                 </Button>
               )}
             </Col>
-            <Col span={12}>
+            <Col span={12} style={{paddingTop: '10px'}}>
               <Row justify='end'>
                 {current < steps.length - 1 && (
                   <Button type='link' onClick={() => next()}>
