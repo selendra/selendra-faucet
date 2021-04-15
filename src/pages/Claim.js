@@ -182,12 +182,12 @@ export default function Claim() {
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
                 <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"/>
-                <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
               </Form.Item>
+              <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
-                <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
               </Form.Item>
+              <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
               { isVerified &&
                 <Form.Item>
                   <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>
