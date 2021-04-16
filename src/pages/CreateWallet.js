@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Row, Col, Button, Modal } from 'antd';
 import CreateWalletArtwork from '../assets/createwallet.png';
+import { NavLink } from 'react-router-dom';
 
 export default function CreateWallet() {
   const [visible, setVisible] = useState(false);
@@ -117,18 +118,24 @@ export default function CreateWallet() {
             <p className='intro__subTitle'>How to Install and Create an Selendra Metamask Wallet Account</p>
             <p className='intro__des'>Get Started:</p>
             <div className='intro__btn'>
-              <Button style={{height: '70px'}} onClick={()=>setVisibleBit(true)}>
+              <Button style={{height: '70px'}}>
+                <NavLink to='create-bep20wallet'>
                 Get Selendra BEP-20 wallet in Bitriel wallet
+                </NavLink>
               </Button>
             </div>
             <div className='intro__btn'>
-              <Button style={{height: '70px'}} onClick={()=>setVisibleTrust(true)}>
+              <Button style={{height: '70px'}}>
+                <NavLink to='add-seltoken-on-trustwallet'>
                 Add SELToken on Trust wallet
+                </NavLink>
               </Button>
             </div>
             <div className='intro__btn'>
-              <Button style={{height: '70px'}} onClick={()=>setVisible(true)}>
+              <Button style={{height: '70px'}}>
+                <NavLink to='install-metamask'>
                 Install Metamask on smartphone
+                </NavLink>
               </Button>
             </div>
           </Col>
