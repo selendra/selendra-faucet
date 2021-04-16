@@ -342,24 +342,26 @@
   background-color: #1A2F3C!important;
 }
 
+.createwallet p {
+  margin: 4px 0!important;
+}
+
 .createwallet__title {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
+  padding-bottom: 10px!important;
 }
 
 .createwallet__subTitle {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
+  padding: 10px 0!important;
 }
 
 .createwallet img {
   object-fit: cover;
   width: 320px;
   height: auto;
-}
-
-.createwallet p {
-  margin: 10px 0!important;
 }
 
 .createwallet .ant-modal {
@@ -370,4 +372,22 @@
   .createwallet{
     font-size: 18px;
   }
+  /* .createwallet__title {
+    font-size: 24px;
+  }
+  .createwallet__subTitle {
+    font-size: 22px;
+  } */
+}
+
+.anchor {
+  width: 380px;
+  margin-top: 20px;
+  background-color: transparent!important;
+}
+
+.anchor a{
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
 }
