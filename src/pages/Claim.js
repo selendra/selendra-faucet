@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
-import { Row, Col, Steps, Button, Form, Input, Radio } from 'antd';
+import { Row, Col, Steps, Button, Form, Input, Radio, message } from 'antd';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GoogleSpreadsheet } from "google-spreadsheet";
+import { ethers } from 'ethers';
 
 import Next from '../assets/next.png';
 import Back from '../assets/back.png';
@@ -63,6 +64,12 @@ export default function Claim() {
     });
     // loads document properties and worksheets
     await doc.loadInfo();
+
+    const isEtherAddress = ethers.utils.isAddress(val.wallet);
+    if(!isEtherAddress) {
+      setLoading(false);
+      return message.error('Look like wallet address not valid!');
+    } 
 
     const sheet = doc.sheetsById[SHEET_ID];
     await sheet.addRow({
