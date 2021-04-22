@@ -14,6 +14,7 @@ import {
 import InstallMetamask from './pages/InstallMetamask';
 import ChangeNetwork from './pages/ChangeNetwork';
 import ScrollToTop from './utils/ScrollToTop';
+import Invitation from './pages/Invitation/_id';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path='/add-seltoken-on-trustwallet' component={AddSelToken} />
           <Route path='/install-metamask' component={InstallMetamask} />
           <Route path='/change-network-to-binance-smartchain' component={ChangeNetwork} />
+          <Route path='/invitation' component={Invitation} />
         </Switch>
       </Header>
     </Router>

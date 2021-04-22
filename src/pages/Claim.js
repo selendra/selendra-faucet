@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import { Row, Col, Steps, Button, Form, Input, Radio, message } from 'antd';
+import { ShareAltOutlined } from '@ant-design/icons'
 import ReCAPTCHA from "react-google-recaptcha";
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { ethers } from 'ethers';
@@ -14,8 +15,12 @@ import Crypto from '../assets/Crypto.png';
 import Airdrop1 from '../assets/airdrop1.png';
 import Airdrop2 from '../assets/airdrop2.png';
 import Airdrop3 from '../assets/airdrop3.png';
+import { ReactComponent as Facebook } from '../assets/cfacebook.svg';
+import { ReactComponent as Twitter } from '../assets/ctwitter.svg';
+import { ReactComponent as Telegram } from '../assets/ctelegram.svg';
 
 export default function Claim() {
+  let query = useQuery();
   const _reCaptchaRef = useRef();
   const history = useHistory();
   const { Step } = Steps;
@@ -23,6 +28,15 @@ export default function Claim() {
   const [loading, setLoading] = useState(false);
   const [current, setCurrent] = useState(0);
   const [value, setValue] = useState(1);
+  const [address, setAddress] = useState('');
+
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+
+  const twelveDigit = (str) => {
+    return str.slice(-12);
+  }
 
   const onChangeRadio = (e) => {
     setValue(e.target.value);
@@ -76,7 +90,8 @@ export default function Claim() {
       Email: val.email, 
       Phone: val.phone, 
       Wallet: val.wallet, 
-      Link: val.link
+      Link: val.link,
+      Referralid: query.get("ref")
     })
     .then(_=> {
       history.push('/success');
@@ -149,27 +164,27 @@ export default function Claim() {
         </Row>
       ,
     },
-    {
-      title: 'Share On Social', 
-      content: 
-        <Row align='middle' style={{minHeight: '70vh'}}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <p className='intro__subTitle'>Share On Social Media</p>
-            <div className='intro__btnShare'>
-              <Button onClick={onTwitter}>Post in twitter</Button>
-              <Button onClick={onFacebook}>Post in facebook</Button>  
-              <Button onClick={onTelegram}>Join telegram community</Button>
-            </div>
-            <p>Note: Join Selendra community will get extra 5 $SEL, Each unique link shared will get extra 5 $SEL, Make Youtube video about Selendra will get +50 $SEL</p>
-          </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-            <Row justify='center'>
-              <img src={ShareOnSocial} className='about__pic'/>
-            </Row>
-          </Col>
-        </Row>
-      ,
-    },
+    // {
+    //   title: 'Share On Social', 
+    //   content: 
+    //     <Row align='middle' style={{minHeight: '70vh'}}>
+    //       <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+    //         <p className='intro__subTitle'>Share On Social Media</p>
+    //         <div className='intro__btnShare'>
+    //           <Button onClick={onTwitter}>Post in twitter</Button>
+    //           <Button onClick={onFacebook}>Post in facebook</Button>  
+    //           <Button onClick={onTelegram}>Join telegram community</Button>
+    //         </div>
+    //         <p>Note: Join Selendra community will get extra 5 $SEL, Each unique link shared will get extra 5 $SEL, Make Youtube video about Selendra will get +50 $SEL</p>
+    //       </Col>
+    //       <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+    //         <Row justify='center'>
+    //           <img src={ShareOnSocial} className='about__pic'/>
+    //         </Row>
+    //       </Col>
+    //     </Row>
+    //   ,
+    // },
     {
       title: 'Claim Airdrop',
       content: 
@@ -180,7 +195,7 @@ export default function Claim() {
           <Col xs={24} sm={24} md={24} lg={{span: 11, offset: 1}} xl={{span: 11, offset: 1}}>
             <p className='intro__subTitle'>Field the form with your wallet to receive your $SEL</p>
             <br />
-            <Form className='intro__input' onFinish={onSubmit}>
+            <Form className='intro__input'  layout='vertical' onFinish={onSubmit}>
               <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
                 <Input placeholder="Email (get +5 $SEL)"/>
               </Form.Item>
@@ -188,12 +203,32 @@ export default function Claim() {
                 <Input placeholder="Phone Number (get +5 $SEL)"/>
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
-                <Input placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"/>
+                <Input 
+                  placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"
+                  value={address}
+                  onChange={e => setAddress(e.target.value)}
+                />
               </Form.Item>
               <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
               </Form.Item>
+              { query.get("ref") !== null && (
+              <Form.Item name='referral' label='referral ID:'>
+                <Input placeholder={query.get("ref")} disabled/>
+              </Form.Item>
+              )}
+              <NavLink to={'/invitation?ref=' + twelveDigit(address)} target="_blank">
+                <div className='invite__btn'>
+                  <Button icon={<ShareAltOutlined />}>Invite Now</Button>
+                </div>
+              </NavLink>
+              <p style={{color: '#fff', paddingTop: '10px', fontSize: '16px'}}>Share:</p>
+              <Row>
+                <Twitter style={{cursor: 'pointer'}} onClick={onTwitter} />
+                <Facebook style={{cursor: 'pointer', margin: '0 10px'}} onClick={onFacebook} />
+                <Telegram style={{cursor: 'pointer'}} onClick={onTelegram} />
+              </Row>
               <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
               { isVerified &&
                 <Form.Item>
