@@ -421,3 +421,19 @@
   color: #bd5008;
   word-wrap: break-word;
 }
+
+.invite__getRef > Button {
+  color: #fff;
+  font-weight: 600;
+  background-color: #bd5008;
+  border: none;
+  height: 46px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.invite__getRef > Button:hover,
+.invite__getRef > Button:focus {
+  background-color:#bd5008;
+  color: #fff;
+}

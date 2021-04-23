@@ -120,7 +120,7 @@ export default function CreateWallet() {
             <div className='intro__btn'>
               <Button style={{height: '70px'}}>
                 <NavLink to='create-bep20wallet'>
-                Get Selendra BEP-20 wallet in Bitriel wallet
+                Get Selendra BEP-20 wallet
                 </NavLink>
               </Button>
             </div>

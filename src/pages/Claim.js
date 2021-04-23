@@ -51,7 +51,7 @@ export default function Claim() {
     }
   };
 
-  const shareMSG = 'Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at airdrop.selendra.org. Join t.me/selendraorg to connect with others in the community.';
+  const shareMSG = 'Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at airdrop.selendra.org. Join t.me/selendraorg to connect with others in the community. #Selendra #Blockchain';
   const onTwitter = () => {
     window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fairdrop.selendra.org%2F&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
@@ -218,11 +218,11 @@ export default function Claim() {
                 <Input placeholder={query.get("ref")} disabled/>
               </Form.Item>
               )}
-              <NavLink to={'/invitation?ref=' + twelveDigit(address)} target="_blank">
+              {/* <NavLink to={'/invitation?ref=' + twelveDigit(address)} target="_blank">
                 <div className='invite__btn'>
                   <Button icon={<ShareAltOutlined />}>Invite Now</Button>
                 </div>
-              </NavLink>
+              </NavLink> */}
               <p style={{color: '#fff', paddingTop: '10px', fontSize: '16px'}}>Share:</p>
               <Row>
                 <Twitter style={{cursor: 'pointer'}} onClick={onTwitter} />
