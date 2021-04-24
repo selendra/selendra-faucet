@@ -49,7 +49,7 @@ function Invitation() {
     }, 1000);
   }
 
-  const shareMSG = `Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at ${refLink}. Join t.me/selendraorg to connect with others in the community.`;
+  const shareMSG = `Join me to get more $SEL!. Just click ${refLink} to claim yours!. Join and connect with us @ t.me/selendraorg   http://twitter.com/selendraorg`;
   const onTwitter = () => {
     window.open(`https://twitter.com/intent/tweet?url=${refLink}&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
