@@ -59,7 +59,7 @@ function Invitation() {
   }
 
   const onLinkedin = () => {
-    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${refLink}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.protocol}//${window.location.hostname}${ window.location.port ? ':' : ''}${ window.location.port ? window.location.port : ""}/claim-$sel?ref%3D${twelveDigit(address)}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
   }
 
   const onTelegram = () => {
