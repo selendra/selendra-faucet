@@ -6,6 +6,7 @@ import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { ethers } from 'ethers';
+import {Helmet} from "react-helmet";
 
 import Next from '../assets/next.png';
 import Back from '../assets/back.png';
@@ -253,6 +254,11 @@ export default function Claim() {
 
   return (
     <div className='intro'>
+      <Helmet>
+        <title>Claim $SEL</title>
+        <meta name="description" content="Create wallet and claim $SEL together" />
+        <meta property="og:image" content="https://user-images.githubusercontent.com/38589050/116515221-2f110d80-a8f6-11eb-8400-7a9c758af183.png" />
+      </Helmet>
       <div className='intro__container'>
         <Row>
           <Col xs={0} sm={0} md={24} lg={24} xl={24}>

@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import ShareOnSocial from '../../assets/share.png';
 import { ethers } from 'ethers';
+import {Helmet} from "react-helmet";
 
 import { ReactComponent as Facebook } from '../../assets/cfacebook.svg';
 import { ReactComponent as Twitter } from '../../assets/ctwitter.svg';
@@ -68,10 +69,15 @@ function Invitation() {
 
   return (
     <div className='intro'>
+      <Helmet>
+        <title>Invite Friends</title>
+        <meta name="description" content="Invite friends and earn $SEL together" />
+        <meta property="og:image" content="https://user-images.githubusercontent.com/38589050/116515221-2f110d80-a8f6-11eb-8400-7a9c758af183.png" />
+      </Helmet>
       <div className='intro__container'>
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={11} xl={11}>
-            <p className='intro__subTitle'>Invite Friend. Earn $SEL Together</p>
+            <p className='intro__subTitle'>Invite Friends. Earn $SEL Together</p>
             <p style={{color: '#4680a3', fontSize: '18px'}}>Earn up to 5 $SEL every time your friends use your referral id</p>
             <div style={{padding: '1rem 0'}}/>
             { !visible && (
