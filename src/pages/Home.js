@@ -3,12 +3,21 @@ import { Row, Col, Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 import AboutUs from '../components/About'
 import Artwork from '../assets/artwork.png'
+import { Helmet } from 'react-helmet'
 
 export default function About() {
   const [isReadmore, setIsReadmore] = useState(false);
 
   return (
     <div className='about'>
+      <Helmet>
+        <Title>Selendra Airdrop</Title>
+        <meta property="og:url" content="https://airdrop.selendra.org" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Selendra Airdrop" />
+        <meta property="og:description" content="A multi-sharding Blockchain network focuses on empowering developers to build real world Apps/Dapps for Web 3.0" />
+        <meta property="og:image" content='https://user-images.githubusercontent.com/38589050/116519503-bf9e1c80-a8fb-11eb-9af1-726b68d53222.png' />
+      </Helmet>
       <div className='about__container'>
         <Row align='middle' style={{ minHeight: '80vh' }}>
           <Col xs={24} sm={24} md={24} lg={12} xl={12}>
