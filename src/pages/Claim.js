@@ -256,6 +256,8 @@ export default function Claim() {
     <div className='intro'>
       <Helmet>
         <title>Claim $SEL</title>
+        <meta property="og:url" content="https://airdrop.selendra.org/claim-$sel" />
+        <meta property="og:type" content="article" />
         <meta name="description" content="Create wallet and claim $SEL together" />
         <meta property="og:image" content="https://user-images.githubusercontent.com/38589050/116567208-9dbf8c80-a931-11eb-91f1-355b4c0805b1.png" />
       </Helmet>
