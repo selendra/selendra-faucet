@@ -11,7 +11,7 @@ export default function About() {
   return (
     <div className='about'>
       <Helmet>
-        <Title>Selendra Airdrop</Title>
+        <title>Selendra Airdrop</title>
         <meta property="og:url" content="https://airdrop.selendra.org" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Selendra Airdrop" />
