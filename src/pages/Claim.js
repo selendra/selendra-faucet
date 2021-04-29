@@ -52,7 +52,7 @@ export default function Claim() {
     }
   };
 
-  const shareMSG = 'Follow Selendra and get free $SEL tokens. Share twitter.com/selendraorg to get more $SEL. Claim it at airdrop.selendra.org. Join t.me/selendraorg to connect with others in the community. #Selendra #Blockchain';
+  const shareMSG = 'Claim $SEL tokens airdrop via airdrop.selendra.org. Post about %23Selendra on social media, submit link to claim more $SEL. follow us on Twitter twitter.com/selendraorg and Telegram t.me/selendraorg. %23Selendra %23Blockchain %23SmartContract %23OpenSource';
   const onTwitter = () => {
     window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fairdrop.selendra.org%2F&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
