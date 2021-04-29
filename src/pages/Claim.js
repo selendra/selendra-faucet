@@ -257,7 +257,7 @@ export default function Claim() {
       <Helmet>
         <title>Claim $SEL</title>
         <meta name="description" content="Create wallet and claim $SEL together" />
-        <meta property="og:image" content="https://user-images.githubusercontent.com/38589050/116515221-2f110d80-a8f6-11eb-8400-7a9c758af183.png" />
+        <meta property="og:image" content="https://user-images.githubusercontent.com/38589050/116567208-9dbf8c80-a931-11eb-91f1-355b4c0805b1.png" />
       </Helmet>
       <div className='intro__container'>
         <Row>

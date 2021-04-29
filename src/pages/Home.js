@@ -27,7 +27,7 @@ export default function About() {
               <p>Selendra is a blockchain network built with Substrate framework that support the building of business use-cases with developability and interoperability for developers to launch their applications in a decentralized manner with minimal learning curve. Developers can use tools they love to build business logic, user-friendly interfaces and take full advantage of tokeneconomic for their platform ecosystem and users’ expansion.
                 <Button type='link' style={{paddingLeft: '0'}} onClick={() => setIsReadmore(true)}>...READ MORE</Button>
               </p>
-              <AboutUs visible={isReadmore} setVisible={setIsReadmore}/>
+              <AboutUs visible={isReadmore} setVisible={setIsReadmore} /> 
             </div>
             <div className='about__btn'>
               <Button>
