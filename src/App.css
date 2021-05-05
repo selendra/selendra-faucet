@@ -313,6 +313,9 @@
   font-size: 24px;
   font-weight: 600;
 }
+.ant-input[disabled] {
+  background-color: #1A2F3C!important;
+}
 .success__title {
   font-size: 32px;
   font-weight: 600;
@@ -389,5 +392,48 @@
 .anchor a{
   font-size: 18px;
   font-weight: 600;
+  color: #fff;
+}
+
+.invite__btn > Button {
+  width: 140px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 2px;
+  background-color:#D65B09;
+}
+
+.invite__btn > Button:hover,
+.invite__btn > Button:focus {
+  background-color:#bd5008;
+  color: #fff;
+} 
+
+.ref__title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ref__id {
+  font-size: 18px;
+  font-weight: 600;
+  color: #bd5008;
+  word-wrap: break-word;
+}
+
+.invite__getRef > Button {
+  color: #fff;
+  font-weight: 600;
+  background-color: #e3be09;
+  border: none;
+  height: 46px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.invite__getRef > Button:hover,
+.invite__getRef > Button:focus {
+  background-color:#e3be09;
   color: #fff;
 }

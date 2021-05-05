@@ -120,21 +120,21 @@ export default function CreateWallet() {
             <div className='intro__btn'>
               <Button style={{height: '70px'}}>
                 <NavLink to='create-bep20wallet'>
-                Get Selendra BEP-20 wallet in Bitriel wallet
+                Selendra on BEP-20 wallet
                 </NavLink>
               </Button>
             </div>
             <div className='intro__btn'>
               <Button style={{height: '70px'}}>
                 <NavLink to='add-seltoken-on-trustwallet'>
-                Add SELToken on Trust wallet
+                Selendra on Trust wallet
                 </NavLink>
               </Button>
             </div>
             <div className='intro__btn'>
               <Button style={{height: '70px'}}>
                 <NavLink to='install-metamask'>
-                Install Metamask on smartphone
+                Selendra on Metamask
                 </NavLink>
               </Button>
             </div>

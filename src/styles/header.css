@@ -19,6 +19,7 @@
 .header__item {
   font-size: 22px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .site-layout-content {
@@ -43,4 +44,11 @@
   .header__container {
     padding: 0 10px;
   }   
+}
+
+.header__btnInvite > Button {
+  color: #e3be09;
+  border: 1px solid #e3be09;
+  border-radius: 8px;
+  font-weight: 800;
 }

@@ -1,4 +1,4 @@
-import { Row, Layout, Col, Drawer } from 'antd'
+import { Row, Layout, Col, Drawer, Button } from 'antd'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/selendra.png'
@@ -36,6 +36,11 @@ export default function Header(props) {
         <NavLink to='/' onClick={() => setModalVisible(true)}>
           <p className='header__navItem'>About</p>
         </NavLink>
+        {/* <NavLink to='/invite-friend' onClick={onClose}>
+          <div className='header__btnInvite'>
+            <Button type='ghost' size='large'>Invite Friend</Button>
+          </div>
+        </NavLink> */}
       </Drawer>
       <div className='header'>
         <div className='header__container'>
@@ -46,11 +51,16 @@ export default function Header(props) {
               </NavLink>
             </Col>
             <Col xs={0} sm={0} md={12} lg={12} xl={12}>
-              <Row justify='space-between' style={{ width: 300 }}>
+              <Row justify='space-between' style={{ width: 400 }}>
                 <NavLink to='/claim-$sel' style={{ color: '#fff' }}>
                   <p className='header__item'>Claim $SEL</p>
                 </NavLink>
                 <p className='header__item' onClick={() => setModalVisible(true)}>About</p>
+                {/* <NavLink to='/invite-friend'>
+                  <div className='header__btnInvite'>
+                    <Button type='ghost' size='large'>Invite Friend</Button>
+                  </div>
+                </NavLink> */}
               </Row>
             </Col>
             <Col xs={12} sm={12} md={0} lg={0} xl={0}>
