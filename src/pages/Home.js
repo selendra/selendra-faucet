@@ -12,7 +12,7 @@ export default function About() {
     <div className='about'>
       <Helmet>
         <title>Selendra Airdrop</title>
-        <meta property="og:url" content="https://airdrop.selendra.org" />
+        {/* <meta property="og:url" content="https://airdrop.selendra.org" /> */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Selendra Airdrop" />
         <meta property="og:description" content="A multi-sharding Blockchain network focuses on empowering developers to build real world Apps/Dapps for Web 3.0" />
