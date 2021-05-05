@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { ethers } from 'ethers';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import Next from '../assets/next.png';
 import Back from '../assets/back.png';
@@ -198,19 +198,19 @@ export default function Claim() {
             <br />
             <Form className='intro__input'  layout='vertical' onFinish={onSubmit}>
               <Form.Item name='email' rules={[{ type: 'email' }, { required: true }]}>
-                <Input placeholder="Email (get +5 $SEL)"/>
+                <Input placeholder="Email"/>
               </Form.Item>
               <Form.Item name='phone' rules={[{ required: true }]}>
-                <Input placeholder="Phone Number (get +5 $SEL)"/>
+                <Input placeholder="Phone Number"/>
               </Form.Item>
               <Form.Item name='wallet' rules={[{ required: true }]}>
                 <Input 
-                  placeholder="Wallet Address (0xe0e5c149b9cdf9d2279b6ddfda9bc0a4a975285c)"
+                  placeholder="Wallet"
                   value={address}
                   onChange={e => setAddress(e.target.value)}
                 />
               </Form.Item>
-              <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet (each address will get 100 $SEL)</NavLink>
+              <NavLink to='/createwallet' style={{padding: '4px'}}>Get Wallet</NavLink>
               <Form.Item name='link'>
                 <Input placeholder="Social Link(Optional)"/>
               </Form.Item>
@@ -230,7 +230,7 @@ export default function Claim() {
                 <Facebook style={{cursor: 'pointer', margin: '0 10px'}} onClick={onFacebook} />
                 <Telegram style={{cursor: 'pointer'}} onClick={onTelegram} />
               </Row>
-              <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p>
+              {/* <p style={{color: '#fff', paddingTop: '10px'}}>Notes: shared link of (twitter, linkedin, facebook) +5 $SEL each, YouTube video at least 30 second +50 $SEL, per each approved video.</p> */}
               { isVerified &&
                 <Form.Item>
                   <Button htmlType='submit' loading={loading}>Claim Airdrop</Button>

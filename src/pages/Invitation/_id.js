@@ -84,7 +84,7 @@ function Invitation() {
             <div>
               <p style={{color: '#4680a3', fontSize: '18px'}}>Field your wallet address to get referral link :</p>
               <div className='intro__input'>
-                <Input placeholder='wallet address' value={address} onChange={e => setAddress(e.target.value)} />
+                <Input placeholder='wallet address (SEL address only)' value={address} onChange={e => setAddress(e.target.value)} />
               </div>
               <div style={{padding: '0.6rem 0'}}/>
               <div className='invite__getRef'>
@@ -105,7 +105,7 @@ function Invitation() {
                 </Row>
                 <div style={{padding: '1rem 0'}}/>
                 <Row>
-                  <Col span={12}>
+                  <Col span={12}> 
                     <p className='ref__title'>Default Link:</p>
                   </Col>
                   <Col span={12}>

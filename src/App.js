@@ -15,6 +15,7 @@ import InstallMetamask from './pages/InstallMetamask';
 import ChangeNetwork from './pages/ChangeNetwork';
 import ScrollToTop from './utils/ScrollToTop';
 import Invitation from './pages/Invitation/_id';
+import ListAddress from './pages/ListAddress';
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           <Route path='/install-metamask' component={InstallMetamask} />
           <Route path='/change-network-to-binance-smartchain' component={ChangeNetwork} />
           <Route path='/invite-friend' component={Invitation} />
+          <Route path='/list-address' component={ListAddress} />
         </Switch>
       </Header>
     </Router>
