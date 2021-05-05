@@ -118,7 +118,7 @@ export default function Claim() {
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={10} xl={10}>
             <p className='intro__subTitle'>Introduction</p>
-            <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 of SEL tokens. Each session will last as long as 3 months. The first event will take place during Khmer New Year of the year 2021. Airdrop event will look like in the table.</p>
+            <p className='intro__des'>We will conduct 3 airdrops, each drop will have 6 sessions of 31,415,927 SEL tokens. Each session will last as long as 3 months. The first event took place during Khmer New Year, April 2021. Check the table image for more details.</p>
           </Col>
           <Col xs={24} sm={24} md={24} lg={{span:12, offset: 1}} xl={{span:12, offset: 1}}>
             <Row justify='center'>
