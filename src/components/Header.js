@@ -36,11 +36,11 @@ export default function Header(props) {
         <NavLink to='/' onClick={() => setModalVisible(true)}>
           <p className='header__navItem'>About</p>
         </NavLink>
-        <NavLink to='/invite-friend' onClick={onClose}>
+        {/* <NavLink to='/invite-friend' onClick={onClose}>
           <div className='header__btnInvite'>
             <Button type='ghost' size='large'>Invite Friend</Button>
           </div>
-        </NavLink>
+        </NavLink> */}
       </Drawer>
       <div className='header'>
         <div className='header__container'>
@@ -56,11 +56,11 @@ export default function Header(props) {
                   <p className='header__item'>Claim $SEL</p>
                 </NavLink>
                 <p className='header__item' onClick={() => setModalVisible(true)}>About</p>
-                <NavLink to='/invite-friend'>
+                {/* <NavLink to='/invite-friend'>
                   <div className='header__btnInvite'>
                     <Button type='ghost' size='large'>Invite Friend</Button>
                   </div>
-                </NavLink>
+                </NavLink> */}
               </Row>
             </Col>
             <Col xs={12} sm={12} md={0} lg={0} xl={0}>
