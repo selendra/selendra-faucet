@@ -78,7 +78,7 @@ function Invitation() {
         <Row align='middle' style={{minHeight: '70vh'}}>
           <Col xs={24} sm={24} md={24} lg={11} xl={11}>
             <p className='intro__subTitle'>Invite Friends. Earn $SEL Together</p>
-            <p style={{color: '#4680a3', fontSize: '18px'}}>Earn up to 5 $SEL every time your friends use your referral id</p>
+            <p style={{color: '#4680a3', fontSize: '18px'}}>Earn up to 3 $SEL every time your friends use your referral id</p>
             <div style={{padding: '1rem 0'}}/>
             { !visible && (
             <div>

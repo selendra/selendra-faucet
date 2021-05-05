@@ -425,7 +425,7 @@
 .invite__getRef > Button {
   color: #fff;
   font-weight: 600;
-  background-color: #bd5008;
+  background-color: #e3be09;
   border: none;
   height: 46px;
   width: 100%;
@@ -434,6 +434,6 @@
 
 .invite__getRef > Button:hover,
 .invite__getRef > Button:focus {
-  background-color:#bd5008;
+  background-color:#e3be09;
   color: #fff;
 }
