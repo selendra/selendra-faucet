@@ -1,4 +1,4 @@
-import { Row, Col, Card, Input, Button, message } from 'antd';
+import { Row, Col, Card, Input, Button, message, Spin } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ShareOnSocial from '../../assets/share.png';
@@ -27,6 +27,7 @@ function Invitation() {
   const [allAddress, setAllAddress] = useState([]);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [pageLoad, setPageLoad] = useState(true);
 
   const LoadValue = async() => {
     const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
@@ -38,7 +39,7 @@ function Invitation() {
     const sheet = doc.sheetsById[0];
     const rows = await sheet.getRows();
     setAllAddress(rows);
-    console.log(allAddress, rows);
+    setPageLoad(false);
   }
 
   useEffect(() => {
@@ -96,6 +97,14 @@ function Invitation() {
 
   const onTelegram = () => {
     window.open(`https://t.me/share/url?url=${refLink}&text=${shareMSG}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')
+  }
+
+  if(pageLoad) {
+    return (
+      <div style={{width: '100vw', display: 'flex', justifyContent: 'center'}}>
+        <Spin />
+      </div>
+    )
   }
 
   return (
