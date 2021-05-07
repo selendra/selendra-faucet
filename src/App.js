@@ -31,8 +31,8 @@ export default function App() {
           <Route path='/add-seltoken-on-trustwallet' component={AddSelToken} />
           <Route path='/install-metamask' component={InstallMetamask} />
           <Route path='/change-network-to-binance-smartchain' component={ChangeNetwork} />
-          {/* <Route path='/invite-friend' component={Invitation} /> */}
-          {/* <Route path='/list-address' component={ListAddress} /> */}
+          <Route path='/invite-friend' component={Invitation} />
+          <Route path='/list-address' component={ListAddress} />
         </Switch>
       </Header>
     </Router>

@@ -419,7 +419,7 @@
   font-size: 18px;
   font-weight: 600;
   color: #bd5008;
-  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .invite__getRef > Button {

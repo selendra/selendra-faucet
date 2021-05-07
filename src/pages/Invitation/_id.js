@@ -1,9 +1,10 @@
 import { Row, Col, Card, Input, Button, message } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ShareOnSocial from '../../assets/share.png';
 import { ethers } from 'ethers';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 
 import { ReactComponent as Facebook } from '../../assets/cfacebook.svg';
 import { ReactComponent as Twitter } from '../../assets/ctwitter.svg';
@@ -12,6 +13,10 @@ import { ReactComponent as Telegram } from '../../assets/ctelegram.svg';
 import { ReactComponent as Copy } from '../../assets/copy.svg';
 
 function Invitation() {
+  const SPREADSHEET_ID = process.env.REACT_APP_SPREADSHEET_ID;
+  const SHEET_ID = process.env.REACT_APP_SHEET_ID;
+  const CLIENT_EMAIL = process.env.REACT_APP_CLIENT_EMAIL;
+  const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY.replace(/\\n/g, '\n');
   const cardStyle = {
     width: '100%', 
     background: '#1A2F3C',
@@ -19,8 +24,26 @@ function Invitation() {
     borderRadius: '8px'
   }
   const [address, setAddress] = useState('');
+  const [allAddress, setAllAddress] = useState([]);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const LoadValue = async() => {
+    const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
+    await doc.useServiceAccountAuth({
+      client_email: CLIENT_EMAIL,
+      private_key: PRIVATE_KEY,
+    });
+    await doc.loadInfo();
+    const sheet = doc.sheetsById[0];
+    const rows = await sheet.getRows();
+    setAllAddress(rows);
+    console.log(allAddress, rows);
+  }
+
+  useEffect(() => {
+    LoadValue();
+  }, [])
 
   const onCopy = () => {
     /* Get the text field */
@@ -43,7 +66,15 @@ function Invitation() {
   const handleGetRef = () => {
     if(!address) return message.error('wallet address is required!');
     if(!(ethers.utils.isAddress(address))) return message.error('Look like wallet address not valid!');
-      setLoading(true);
+    let single = allAddress.filter((obj) => {
+      if(obj.Wallet === address){
+        return true;
+      } 
+      return false;
+    });
+    
+    if(single.length === 0) return message.error('Look like you not submit the form yet!');
+    setLoading(true);
     setTimeout(() => {
       setVisible(true);
       setLoading(false);
