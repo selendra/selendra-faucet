@@ -35,7 +35,7 @@ class GenericFaucetInterface {
     this.timeLimitHours = config.timeLimitHours;
     this.decimals = new BN(config.decimals.toString());
     // Help message when user first starts or types help command
-    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message: "/giveme ADDRESS"\nwith your correct SEL address.\nExample: /giveme 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
+    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message: "/GiveMeSEL ADDRESS"\nwith your correct SEL address.\nExample: /GiveMeSEL 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
 
     // Error Messages
     this.timeLimitMessage = `Enjoy your journey. Please come back in ${this.timeLimitHours} hours`;
@@ -46,7 +46,7 @@ class GenericFaucetInterface {
 
   // tries to get valid address from message, if fails, returns undefined
   getAddressFromMessage(message) {
-    const address = message.text.substring(8);
+    const address = message.text.substring(11);
     const check1 = UtilCrypto.checkAddress(address, this.addressType);
     const check2 = UtilCrypto.checkAddress(address, 972);
     const check3 = ethers.utils.isAddress(address);
@@ -189,7 +189,7 @@ bot.help(async (ctx) => {
   await ctx.reply(faucet.getHelpMessage());
 });
 
-bot.command("giveme", async (ctx) => {
+bot.command("GiveMeSEL", async (ctx) => {
   const resp = await faucet.requestToken(ctx.message);
   await ctx.reply(resp);
 });
