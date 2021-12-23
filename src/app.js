@@ -35,11 +35,15 @@ class GenericFaucetInterface {
     this.timeLimitHours = config.timeLimitHours;
     this.decimals = new BN(config.decimals.toString());
     // Help message when user first starts or types help command
-    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message: "/GiveMeSEL ADDRESS"\nwith your correct SEL address.\nExample: /GiveMeSEL 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
+    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message with your correct SEL address: \n
+      /GiveMeSEL ADDRESS, \n
+      /GiveValidatorSEL ADDRESS \n
+      /GiveNorminatorSEL ADDRESS \n\nExample: /GiveMeSEL 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
 
     // Error Messages
     this.timeLimitMessage = `Enjoy your journey. Please come back in ${this.timeLimitHours} hours`;
     this.invalidAddressMessage = `Invalid address! Please use the generic Substrate (5xx) format or Ethereum format (evm 0x)`;
+    this.invalidStakingAMessage = `Invalid address! Please use the generic Substrate (5xx) format`;
     // record storage (for time limit)
     this.records = {};
   }
@@ -51,6 +55,32 @@ class GenericFaucetInterface {
     const check2 = UtilCrypto.checkAddress(address, 972);
     const check3 = ethers.utils.isAddress(address);
     if (check1[0] || check2[0] || check3) {
+      return address;
+    } else {
+      return undefined;
+    }
+  }
+
+  // tries to get valid address from message, if fails, returns undefined
+  getAddressFromValidatMessage(message) {
+    const address = message.text.substring(18);
+    console.log(address);
+    const check1 = UtilCrypto.checkAddress(address, this.addressType);
+    const check2 = UtilCrypto.checkAddress(address, 972);
+    if (check1[0] || check2[0]) {
+      return address;
+    } else {
+      return undefined;
+    }
+  }
+
+  // tries to get valid address from message, if fails, returns undefined
+  getAddressFromNorminateMessage(message) {
+    const address = message.text.substring(19);
+    console.log(address);
+    const check1 = UtilCrypto.checkAddress(address, this.addressType);
+    const check2 = UtilCrypto.checkAddress(address, 972);
+    if (check1[0] || check2[0]) {
       return address;
     } else {
       return undefined;
@@ -89,6 +119,16 @@ class GenericFaucetInterface {
     this.initKeyring();
     const parsedAmount = this.decimals.mul(new BN(this.amount));
     console.log(`Sending ${this.amount} ${this.tokenName} to ${address}`);
+    const transfer = this.api.tx.balances.transfer(address, parsedAmount);
+    const hash = await transfer.signAndSend(this.keyRing);
+    console.log("Transfer sent with hash", hash.toHex());
+  }
+
+  async sendStakingToken(address, amount) {
+    const api = await this.initApi();
+    this.initKeyring();
+    const parsedAmount = this.decimals.mul(new BN(amount));
+    console.log(`Sending ${amount} ${this.tokenName} to ${address}`);
     const transfer = this.api.tx.balances.transfer(address, parsedAmount);
     const hash = await transfer.signAndSend(this.keyRing);
     console.log("Transfer sent with hash", hash.toHex());
@@ -157,6 +197,66 @@ class GenericFaucetInterface {
     }
     return response;
   }
+
+   // function that telgram bot calls
+   async requestValidatToken(message) {
+    let response;
+    const now = Date.now();
+    const senderId = message["from"]["id"];
+    const senderRecords = this.records[senderId];
+    const address = this.getAddressFromValidatMessage(message);
+    const amount = 32000;
+
+    if (address) {
+      response = `Sending ${amount} ${this.tokenName} to ${address}!`;
+      if (senderRecords) {
+        const last = senderRecords.slice(-1)[0];
+        if (now - last > 24* 30 * 1000 * 60 * 60) {
+            await this.sendStakingToken(address, amount);
+            this.records[senderId].push(now);
+        } else {
+            response = `Enjoy your journey. Please come back in 30 Days`;
+        }
+      } else {
+          await this.sendStakingToken(address, amount);
+          this.records[senderId] = [];
+          this.records[senderId].push(now);
+      }
+    } else {
+      response = this.invalidStakingAMessage;
+    }
+    return response;
+  }
+
+  // function that telgram bot calls
+  async requestNominateToken(message) {
+    let response;
+    const now = Date.now();
+    const senderId = message["from"]["id"];
+    const senderRecords = this.records[senderId];
+    const address = this.getAddressFromNorminateMessage(message);
+    const amount = 10000;
+
+    if (address) {
+      response = `Sending ${amount} ${this.tokenName} to ${address}!`;
+      if (senderRecords) {
+        const last = senderRecords.slice(-1)[0];
+        if (now - last > 24 * 20 * 1000 * 60 * 60) {
+            await this.sendStakingToken(address, amount);
+            this.records[senderId].push(now);
+        } else {
+            response = `Enjoy your journey. Please come back in 20 Days`;
+        }
+      } else {
+          await this.sendStakingToken(address, amount);
+          this.records[senderId] = [];
+          this.records[senderId].push(now);
+      }
+    } else {
+      response = this.invalidStakingAMessage;
+    }
+    return response;
+  }
 }
 
 // load env vars
@@ -191,6 +291,16 @@ bot.help(async (ctx) => {
 
 bot.command("GiveMeSEL", async (ctx) => {
   const resp = await faucet.requestToken(ctx.message);
+  await ctx.reply(resp);
+});
+
+bot.command("GiveValidatorSEL", async (ctx) => {
+  const resp = await faucet.requestValidatToken(ctx.message);
+  await ctx.reply(resp);
+});
+
+bot.command("GiveNorminatorSEL", async (ctx) => {
+  const resp = await faucet.requestNominateToken(ctx.message);
   await ctx.reply(resp);
 });
 
