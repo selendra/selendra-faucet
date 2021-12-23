@@ -35,10 +35,7 @@ class GenericFaucetInterface {
     this.timeLimitHours = config.timeLimitHours;
     this.decimals = new BN(config.decimals.toString());
     // Help message when user first starts or types help command
-    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message with your correct SEL address: \n
-      /GiveMeSEL ADDRESS, \n
-      /GiveValidatorSEL ADDRESS \n
-      /GiveNorminatorSEL ADDRESS \n\nExample: /GiveMeSEL 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
+    this.helpMessage = `Welcome to the @SelendraChain Faucet!\n\nYou can request test $SEL tokens to experiment with testnet.selendra.org as a normal user or learn to be a nominator, or validator.\n\nTo request, type command as below:\n\n/giveMeSEL [address]\n\n/giveValidatorSEL [address]\n\n/giveNominatorSEL [address]\n\nExample: /giveMeSEL  5DcanwE6EznqhoApPWvLB6s7\n\nNote: command is case sensitive`;
 
     // Error Messages
     this.timeLimitMessage = `Enjoy your journey. Please come back in ${this.timeLimitHours} hours`;
