@@ -1,6 +1,36 @@
-# About
-Selendra is a blockchain network built with Substrate framework that support the building of business use-cases with developability and interoperability for developers to launch their applications in a decentralized manner with minimal learning curve. Developers can use tools they love to build business logic, user-friendly interfaces and take full advantage of tokeneconomic for their platform ecosystem and users’ expansion.
+# Substrate Telegram Token Faucet
 
-Our mission is to empower developers to create blockchain user-friendly applications for general users in asset tokenization, contents storage and computing, identity and governance, vote and other internet based microtransactions.
+This is a simple token faucet that can be connected to any modern substrate chain to act as a telegram faucet.
 
-Our vision is to be one of the open blockchain that contribute to the building of a healthy internet-of-blockchain and help introduce its benefits to reach users in every corner of the world, especially those in developing nations.
+Set-up is super simple and straight-forward.
+
+## Pre-requisites
+
+1. A bot token , this can be obtained by chatting with BotFather on telegram. https://core.telegram.org/bots#6-botfather
+
+2. A live substrate chain, and a wallet mnemonic with some balances. (This will be used to distribute the tokens)
+
+3. The types.json file for your particular chain
+
+## Installation
+
+`npm i`
+
+## Set-up
+
+1. Copy the .env.example file as .env
+2. Set all the .env vars in this file properly. Including your mnemonic key.
+3. Copy over the correct `type.json` for your chain onto `src/types/types.json`. You can overwrite the current file since this is for the OAX chain.
+4. If you want to change the Help or Error Messages, you can open `app.js` and make these changes
+
+## Run
+
+`npm run start`
+
+## Usage
+
+Either add your bot to a group chat, or directly send a message to your bot.
+
+1. The `/help` command or `/start` command will send you the help text.
+
+2. To request for tokens simple send `/request ADDRESS` where ADDRESS is your substrate address.
