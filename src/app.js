@@ -35,20 +35,18 @@ class GenericFaucetInterface {
     this.timeLimitHours = config.timeLimitHours;
     this.decimals = new BN(config.decimals.toString());
     // Help message when user first starts or types help command
-    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}! 
-    To request for tokens send the message: 
-    "/request ADDRESS" 
-    with your correct ${this.tokenName} address`;
+    this.helpMessage = `Welcome to the ${process.env.FAUCET_NAME}!\nTo request for $SEL tokens send the message: "/giveme ADDRESS"\nwith your correct SEL address.\nExample: /giveme 5DcanwE6EznqhoApPWvLB6s7o98xcaiLyHWnuBLiuWHX6FSq.`;
+
     // Error Messages
-    this.timeLimitMessage = `Sorry please wait for ${this.timeLimitHours} hours, between token requests from the same telegram account!`;
-    this.invalidAddressMessage = `Invalid address! Plese use the generic substrate format or ethereum format (evm)`;
+    this.timeLimitMessage = `Enjoy your journey. Please come back in ${this.timeLimitHours} hours`;
+    this.invalidAddressMessage = `Invalid address! Please use the generic Substrate (5xx) format or Ethereum format (evm 0x)`;
     // record storage (for time limit)
     this.records = {};
   }
 
   // tries to get valid address from message, if fails, returns undefined
   getAddressFromMessage(message) {
-    const address = message.text.substring(9);
+    const address = message.text.substring(8);
     const check1 = UtilCrypto.checkAddress(address, this.addressType);
     const check2 = UtilCrypto.checkAddress(address, 972);
     const check3 = ethers.utils.isAddress(address);
@@ -101,7 +99,7 @@ class GenericFaucetInterface {
         this.rpcUrl, { chainId: 222 }
     );
     let wallet = new ethers.Wallet(this.privateKey, provider);
-    const tx = { to: address, value: ethers.utils.parseEther("10.0") };
+    const tx = { to: address, value: ethers.utils.parseEther("100.0") };
     console.log(`Sending ${this.amount} ${this.tokenName} to ${address}`);
     const createReceipt = await wallet.sendTransaction(tx);
     await createReceipt.wait();
@@ -191,7 +189,7 @@ bot.help(async (ctx) => {
   await ctx.reply(faucet.getHelpMessage());
 });
 
-bot.command("request", async (ctx) => {
+bot.command("giveme", async (ctx) => {
   const resp = await faucet.requestToken(ctx.message);
   await ctx.reply(resp);
 });
