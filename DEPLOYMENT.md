@@ -5,6 +5,7 @@ This guide explains how to deploy the Selendra Faucet application.
 ## Architecture
 
 The application consists of two parts:
+
 1. **Frontend** - Static React app (deployed on Vercel)
 2. **Backend** - Node.js API server (deployed on VPS/Docker)
 
@@ -28,6 +29,7 @@ Environments: Production, Preview, Development
 ```
 
 **Example:** If your backend is at `https://faucet-api.selendra.org`, set:
+
 ```
 VITE_API_URL=https://faucet-api.selendra.org/api
 ```
@@ -87,6 +89,7 @@ server {
 ```
 
 Enable and restart Nginx:
+
 ```bash
 sudo ln -s /etc/nginx/sites-available/faucet-api /etc/nginx/sites-enabled/
 sudo nginx -t
@@ -102,11 +105,13 @@ sudo certbot --nginx -d faucet-api.selendra.org
 ## Alternative Backend Deployment Options
 
 ### Railway
+
 1. Connect GitHub repository
 2. Add environment variables in Railway dashboard
 3. Deploy automatically
 
 ### Heroku
+
 ```bash
 heroku create selendra-faucet-api
 heroku config:set FAUCET_PRIVATE_KEY=your-key
@@ -114,6 +119,7 @@ git push heroku main
 ```
 
 ### VPS (PM2)
+
 ```bash
 npm install -g pm2
 npm run build:full
@@ -125,15 +131,17 @@ pm2 startup
 ## Environment Variables Summary
 
 ### Frontend (Vercel)
-| Variable | Description | Example |
-|----------|-------------|---------|
+
+| Variable       | Description     | Example                               |
+| -------------- | --------------- | ------------------------------------- |
 | `VITE_API_URL` | Backend API URL | `https://faucet-api.selendra.org/api` |
 
 ### Backend (Docker/VPS)
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `FAUCET_PRIVATE_KEY` | Faucet wallet private key | Yes |
-| `PORT` | Server port | No (default: 3001) |
+
+| Variable             | Description               | Required           |
+| -------------------- | ------------------------- | ------------------ |
+| `FAUCET_PRIVATE_KEY` | Faucet wallet private key | Yes                |
+| `PORT`               | Server port               | No (default: 3001) |
 
 ## Verification
 
@@ -144,14 +152,18 @@ pm2 startup
 ## Troubleshooting
 
 ### CORS Issues
+
 Ensure backend CORS is configured to allow your Vercel frontend domain.
 
 ### API Connection Failed
+
 1. Verify `VITE_API_URL` is set correctly in Vercel
 2. Check backend is running: `curl https://your-api-url.com/api/info`
 3. Check browser console for errors
 
 ### Rate Limiting
+
 Users are rate-limited per network:
+
 - Testnet: 1 request per 24 hours
 - Mainnet: 1 request per 1 hour

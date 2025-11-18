@@ -99,8 +99,7 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
     setResponse(null)
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '/api'
-      const result = await axios.post<FaucetResponse>(`${apiUrl}/faucet`, { 
+      const result = await axios.post<FaucetResponse>('/api/faucet', { 
         address,
         network: selectedNetwork
       })
@@ -311,17 +310,13 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
             </div>
             <div>
               <div className="text-xs uppercase tracking-wider text-black/50 mb-1">Balance</div>
-              <div className="text-sm font-medium text-black">
-                {currentNetwork.balance} {selectedNetwork === 'testnet' ? 'tSEL' : 'SEL'}
-              </div>
+              <div className="text-sm font-medium text-black">{currentNetwork.balance} {selectedNetwork === 'testnet' ? 'tSEL' : 'SEL'}</div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-wider text-black/50 mb-1">Amount</div>
               <div className={`text-sm font-medium ${
                 selectedNetwork === 'testnet' ? 'text-testnet' : 'text-mainnet'
-              }`}>
-                {currentNetwork.faucetAmount} {selectedNetwork === 'testnet' ? 'tSEL' : 'SEL'}
-              </div>
+              }`}>{currentNetwork.faucetAmount} {selectedNetwork === 'testnet' ? 'tSEL' : 'SEL'}</div>
             </div>
           </div>
           <div className="pt-4 border-t border-black/10">
@@ -424,7 +419,7 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
           <p className="pt-2 text-xs">Note: You can also enter an address manually if you prefer</p>
         </div>
       </div>
-    </div>
+      </div>
     </>
   )
 }
