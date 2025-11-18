@@ -99,7 +99,8 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
     setResponse(null)
 
     try {
-      const result = await axios.post<FaucetResponse>('/api/faucet', { 
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
+      const result = await axios.post<FaucetResponse>(`${apiUrl}/faucet`, { 
         address,
         network: selectedNetwork
       })

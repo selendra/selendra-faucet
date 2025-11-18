@@ -15,18 +15,18 @@ app.use(express.json());
 // Network configurations
 const NETWORKS = {
   mainnet: {
-    rpc: "https://rpc.selendra.org",
+    rpc: process.env.MAINNET_RPC_ENDPOINT || "https://rpc.selendra.org",
     chainId: 1961,
     name: "Selendra Mainnet",
-    amount: "0.01",
+    amount: process.env.MAINNET_FAUCET_AMOUNT || "0.01",
     rateLimitWindow: 60 * 60 * 1000, // 1 hour
     explorer: "https://scan.selendra.org",
   },
   testnet: {
-    rpc: "https://rpc-testnet.selendra.org",
+    rpc: process.env.TESTNET_RPC_ENDPOINT || "https://rpc-testnet.selendra.org",
     chainId: 1953,
     name: "Selendra Testnet",
-    amount: "10",
+    amount: process.env.TESTNET_FAUCET_AMOUNT || "10",
     rateLimitWindow: 24 * 60 * 60 * 1000, // 24 hours
     explorer: "https://testnet-scan.selendra.org",
   },

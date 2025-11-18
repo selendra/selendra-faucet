@@ -30,7 +30,8 @@ function App() {
 
   const fetchFaucetInfo = async () => {
     try {
-      const response = await fetch('/api/info');
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
+      const response = await fetch(`${apiUrl}/info`);
       const data = await response.json();
       setFaucetInfo(data);
     } catch (error) {
