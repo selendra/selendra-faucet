@@ -13,4 +13,18 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor chunks
+          'react-vendor': ['react', 'react-dom'],
+          'wagmi-vendor': ['wagmi', 'viem', '@tanstack/react-query'],
+          'rainbowkit-vendor': ['@rainbow-me/rainbowkit'],
+          'ethers-vendor': ['ethers'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
 });
