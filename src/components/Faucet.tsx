@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAccount, useSwitchChain, useDisconnect } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { API_URL } from '../config'
 
 // Extend Window interface for MetaMask
 declare global {
@@ -99,7 +100,7 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
     setResponse(null)
 
     try {
-      const result = await axios.post<FaucetResponse>('/api/faucet', { 
+      const result = await axios.post<FaucetResponse>(`${API_URL}/api/faucet`, { 
         address,
         network: selectedNetwork
       })

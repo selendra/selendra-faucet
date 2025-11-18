@@ -1,73 +1,45 @@
 # Deployment Guide
 
-This guide explains how to deploy the Selendra Faucet application.
+This guide explains how to deploy the Selendra Faucet with frontend on Vercel and backend on koompi.cloud.
 
 ## Architecture
 
-The application consists of two parts:
+- **Frontend**: React + Vite hosted on Vercel
+- **Backend**: Express.js API hosted on koompi.cloud
 
-1. **Frontend** - Static React app (deployed on Vercel)
-2. **Backend** - Node.js API server (deployed on VPS/Docker)
+## Backend Deployment (koompi.cloud)
 
-## Frontend Deployment (Vercel)
+### 1. Prerequisites
 
-### 1. Connect Repository to Vercel
+- Node.js 18+ installed
+- PM2 for process management
+- Nginx for reverse proxy
 
-1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
-2. Click "Add New Project"
-3. Import `selendra/selendra-faucet` repository
-4. Vercel will auto-detect the configuration from `vercel.json`
+### 2. Setup Environment Variables
 
-### 2. Add Environment Variables
-
-In Vercel Dashboard → Project Settings → Environment Variables, add:
-
-```
-Name: VITE_API_URL
-Value: https://your-backend-api-url.com/api
-Environments: Production, Preview, Development
-```
-
-**Example:** If your backend is at `https://faucet-api.selendra.org`, set:
-
-```
-VITE_API_URL=https://faucet-api.selendra.org/api
-```
-
-### 3. Deploy
-
-- Vercel will automatically deploy on every push to `main` branch
-- Manual deployment: Click "Deploy" in Vercel Dashboard
-
-## Backend Deployment (Docker)
-
-### 1. Prepare Environment Variables
-
-On your server, create a `.env` file:
+Create `.env` file on your server:
 
 ```bash
 PORT=3001
 FAUCET_PRIVATE_KEY=your-private-key-here
 ```
 
-### 2. Build and Run with Docker
+### 3. Install Dependencies & Build
 
 ```bash
-# Build the Docker image
-docker build -t selendra-faucet .
-
-# Run the container
-docker run -d \
-  --name selendra-faucet \
-  -p 3001:3001 \
-  --env-file .env \
-  --restart unless-stopped \
-  selendra-faucet
+npm install
+npm run build:server
 ```
 
-### 3. Setup Nginx Reverse Proxy (Optional)
+### 4. Start Server with PM2
 
-Create `/etc/nginx/sites-available/faucet-api`:
+```bash
+pm2 start dist/server/index.js --name selendra-faucet
+pm2 save
+pm2 startup
+```
+
+### 5. Configure Nginx
 
 ```nginx
 server {
@@ -83,87 +55,109 @@ server {
         proxy_cache_bypass $http_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 ```
 
-Enable and restart Nginx:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/faucet-api /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-```
-
-### 4. Setup SSL with Certbot
+### 6. Enable HTTPS with Let's Encrypt
 
 ```bash
 sudo certbot --nginx -d faucet-api.selendra.org
 ```
 
-## Alternative Backend Deployment Options
+## Frontend Deployment (Vercel)
 
-### Railway
+### 1. Connect Repository
 
-1. Connect GitHub repository
-2. Add environment variables in Railway dashboard
-3. Deploy automatically
+1. Go to [Vercel Dashboard](https://vercel.com)
+2. Click "Import Project"
+3. Select your GitHub repository
+4. Configure build settings:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
 
-### Heroku
+### 2. Configure Environment Variables
 
-```bash
-heroku create selendra-faucet-api
-heroku config:set FAUCET_PRIVATE_KEY=your-key
-git push heroku main
+Add to Vercel Environment Variables:
+
+```
+VITE_API_URL=https://faucet-api.selendra.org
 ```
 
-### VPS (PM2)
+### 3. Deploy
+
+Click "Deploy" - Vercel will automatically build and deploy your frontend.
+
+## Testing
+
+### Backend Health Check
 
 ```bash
-npm install -g pm2
-npm run build:full
-pm2 start dist/server/index.js --name faucet-api
-pm2 save
-pm2 startup
+curl https://faucet-api.selendra.org/api/health
 ```
 
-## Environment Variables Summary
+Expected response:
 
-### Frontend (Vercel)
+```json
+{
+  "status": "ok",
+  "networks": {
+    "mainnet": {...},
+    "testnet": {...}
+  }
+}
+```
 
-| Variable       | Description     | Example                               |
-| -------------- | --------------- | ------------------------------------- |
-| `VITE_API_URL` | Backend API URL | `https://faucet-api.selendra.org/api` |
+### Frontend
 
-### Backend (Docker/VPS)
+Visit your Vercel URL (e.g., `https://your-app.vercel.app`) and test:
 
-| Variable             | Description               | Required           |
-| -------------------- | ------------------------- | ------------------ |
-| `FAUCET_PRIVATE_KEY` | Faucet wallet private key | Yes                |
-| `PORT`               | Server port               | No (default: 3001) |
+1. Connect wallet
+2. Switch networks
+3. Request tokens
 
-## Verification
+## Environment Variables Reference
 
-1. Frontend: Visit your Vercel URL (e.g., `https://selendra-faucet.vercel.app`)
-2. Backend: Check health endpoint: `https://your-api-url.com/api/health`
-3. Test faucet functionality by connecting wallet and requesting tokens
+### Backend (.env on koompi.cloud)
+
+- `PORT`: Server port (default: 3001)
+- `FAUCET_PRIVATE_KEY`: Private key for both networks
+
+### Frontend (Vercel Environment Variables)
+
+- `VITE_API_URL`: Backend API URL (https://faucet-api.selendra.org)
+
+## Monitoring
+
+### Backend Logs
+
+```bash
+pm2 logs selendra-faucet
+```
+
+### Vercel Logs
+
+Check logs in Vercel Dashboard under "Deployments" → Select deployment → "Logs"
 
 ## Troubleshooting
 
 ### CORS Issues
 
-Ensure backend CORS is configured to allow your Vercel frontend domain.
+If you get CORS errors, ensure your backend allows requests from your Vercel domain:
+
+```typescript
+// server/index.ts
+app.use(
+  cors({
+    origin: ["https://your-app.vercel.app"],
+    credentials: true,
+  })
+);
+```
 
 ### API Connection Failed
 
-1. Verify `VITE_API_URL` is set correctly in Vercel
-2. Check backend is running: `curl https://your-api-url.com/api/info`
-3. Check browser console for errors
-
-### Rate Limiting
-
-Users are rate-limited per network:
-
-- Testnet: 1 request per 24 hours
-- Mainnet: 1 request per 1 hour
+- Verify `VITE_API_URL` is set correctly in Vercel
+- Check backend is running: `pm2 status`
+- Test backend directly: `curl https://faucet-api.selendra.org/api/info`

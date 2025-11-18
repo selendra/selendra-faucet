@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Faucet from './components/Faucet.tsx'
 import Header from './components/Header.tsx'
 import Footer from './components/Footer.tsx'
+import { API_URL } from './config.ts'
 
 interface FaucetInfo {
   success: boolean;
@@ -30,8 +31,7 @@ function App() {
 
   const fetchFaucetInfo = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '/api'
-      const response = await fetch(`${apiUrl}/info`);
+      const response = await fetch(`${API_URL}/api/info`);
       const data = await response.json();
       setFaucetInfo(data);
     } catch (error) {
