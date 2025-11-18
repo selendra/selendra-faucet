@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RainbowKit Custom Styles - Override to match adj.news aesthetic */
+[data-rk] {
+  --rk-border-radius: 0px !important;
+}
+
+/* Remove rounded corners from all RainbowKit elements */
+[data-rk] button,
+[data-rk] .iekbcc0,
+[data-rk] [role="dialog"],
+[data-rk] img {
+  border-radius: 0 !important;
+}
+
+/* Sharp borders for modals */
+[data-rk] [role="dialog"] {
+  border: 2px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Button styles to match our design */
+[data-rk] button {
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}
+
+[data-rk] button:hover {
+  border-color: #0db0a4 !important;
+}
+
+/* Remove border from footer faucet address button */
+footer button {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+footer button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
