@@ -1,0 +1,439 @@
+.App {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #1D3442;
+  color: #fff;
+}
+
+.app__container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: url('./assets/950.png') no-repeat;
+  border-radius: 8px;
+}
+
+.app__title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.app__container Input {
+  border-radius: 8px;
+  width: 380px!important;
+  height: 48px;
+  background: #f5f5f5!important;
+  color: #090D28!important;
+  border-color: #585D86;
+}
+
+.ant-form-item-label > label {
+  color: #fff!important;
+}
+
+.app__container Button {
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: #08B952!important;
+  color: #fff;
+  font-weight: 600;
+}
+
+.app__container Button:hover {
+  color: #fff;
+  background: #069943!important;
+}
+.app__card {
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background: #181C35;
+}
+
+.app__return {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.app__address {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#receive__wallet {
+  position: absolute;
+  color: #fff;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  font-size: 1px;
+  left: 0;
+  box-sizing: content-box;
+  -webkit-user-select: initial;
+  outline: none;
+  margin-left: -9999px;
+}
+
+.app__copy {
+  cursor: pointer;
+  transition: .6s;
+}
+
+.app__copy:hover {
+  color: #08B952;
+}
+
+/* SmartPhone */
+@media only screen and (max-width: 500px) {
+  .App {
+    padding: 0 10px;
+  }
+}
+
+/* about page */
+.about, .footer, .intro {
+  width: 100%;
+  height: 100%;
+}
+.about__container, .footer__container, .intro__container {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+.about__pic {
+  width: 620px;
+  height: 620px;
+  object-fit: contain;
+  margin: 0!important;
+  
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media only screen and (max-width: 500px) {
+  .about__container {
+    padding: 0 10px;
+  }
+  .about__title {
+    font-size: 52px!important;
+    margin-bottom: 40px!important;
+  }   
+  .about__titlemd {
+    font-size: 32px!important;
+    margin-top: 12!important;
+  }
+  .about__des {
+    font-size: 18px!important;
+  }
+  .about__btn > button,
+  .intro__btn > button {
+    width: 100%;
+    height: 60px!important;
+    background-color: #03A2E9;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .about__pic {
+    padding-top: 20px;
+    width: 320px;
+    height: 320px;
+    object-fit: contain;
+    margin: 0!important;
+  }
+  .airdrop {
+    padding-top: 20px;
+    width: 420px!important;
+    height: 420px!important;
+    object-fit: contain;
+    margin: 0!important;
+  }
+}
+.about__title {
+  font-size: 120px;
+  font-weight: 900;
+  color: #2E4350;
+  margin-bottom: 0px;
+}
+.about__titlemd {
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: -60px!important;
+}
+.about__des {
+  font-size: 24px;
+  padding-top: 2rem;
+}
+.about__btn {
+  margin-top: 3rem;
+}
+
+.about__btn > button,
+.intro__btn > button {
+  width: 100%;
+  height: 80px;
+  background-color: #03A2E9;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* footer page */
+.footer {
+  background-color: #335C74;
+  padding: 1rem 0;
+}
+@media only screen and (max-width: 500px) { 
+  .footer {
+    padding: 1rem!important;
+  }
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+.footer li {
+  padding: 10px 0;
+}
+.footer li a {
+  color: #f5f5f5;
+  font-size: 16px;
+  font-weight: 600;
+}
+.footer__title {
+  font-size: 24px;
+  font-weight: 800;
+  padding-top: 0.8rem;
+}
+.footer__subTitle {
+  font-size: 18px;
+}
+ /* intro page */
+@media only screen and (max-width: 500px) { 
+  .intro__container {
+    padding: 0 10px!important;
+  }
+  .intro__title {
+    font-size: 32px!important;
+  }
+  .intro__subTitle {
+    font-size: 32px!important;
+    font-weight: 700;
+  }
+  .intro__des {
+    font-size: 18px!important;
+    padding-bottom: 30px!important;
+  }
+  .intro__btnShare > button {
+    width: 100%;
+    margin: 1rem 0;
+    height: 50px!important;
+    border-radius: 8px;
+    /* border: none; */
+    font-size: 18px!important;
+    font-weight: 600;
+    border-left: 2rem #03A2E9 solid;
+    color: #03A2E9;
+  }
+} 
+.intro__title {
+  font-size: 52px;
+  font-weight: 800;
+}
+.intro__subTitle {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.intro__des {
+  font-size: 24px;
+  font-weight: 500;
+  padding-top: 2rem;
+}
+.ant-steps-item-title {
+  color: #f5f5f5!important;
+}
+.intro__btn {
+  padding: 2rem 0;
+}
+.intro__btnShare > button {
+  width: 100%;
+  margin: 1rem 0;
+  height: 70px;
+  border-radius: 8px;
+  /* border: none; */
+  font-size: 24px;
+  font-weight: 600;
+  border-left: 2rem #03A2E9 solid;
+  color: #03A2E9;
+}
+.intro__input input {
+  height: 60px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1A2F3C;
+  color: #f5f5f5;
+}
+.intro__input button {
+  width: 100%;
+  height: 60px;
+  background-color: #03A2E9;
+  border-radius: 8px;
+  border: none;
+  color: #f5f5f5;
+  font-size: 24px;
+  font-weight: 600;
+}
+.ant-input[disabled] {
+  background-color: #1A2F3C!important;
+}
+.success__title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.success__subTitle {
+  font-size: 18px;
+  text-align: center;
+}
+
+.success__btn {
+  padding: 2rem 0;
+}
+
+.success__btn > button{
+  width: 100%;
+  height: 60px;
+  background-color: #03A2E9;
+  border-radius: 8px;
+  border: none;
+  color: #f5f5f5;
+  font-size: 24px;
+  font-weight: 600;
+}
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  background-color: #1A2F3C!important;
+}
+
+.createwallet p {
+  margin: 4px 0!important;
+}
+
+.createwallet__title {
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 10px!important;
+}
+
+.createwallet__subTitle {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0!important;
+}
+
+.createwallet img {
+  object-fit: cover;
+  width: 320px;
+  height: auto;
+}
+
+.createwallet .ant-modal {
+  padding: 0!important;
+}
+
+@media only screen and (min-width: 769px) {
+  .createwallet{
+    font-size: 18px;
+  }
+  /* .createwallet__title {
+    font-size: 24px;
+  }
+  .createwallet__subTitle {
+    font-size: 22px;
+  } */
+}
+
+.anchor {
+  width: 380px;
+  margin-top: 20px;
+  background-color: transparent!important;
+}
+
+.anchor a{
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.invite__btn > Button {
+  width: 140px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 2px;
+  background-color:#D65B09;
+}
+
+.invite__btn > Button:hover,
+.invite__btn > Button:focus {
+  background-color:#bd5008;
+  color: #fff;
+} 
+
+.ref__title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ref__id {
+  font-size: 18px;
+  font-weight: 600;
+  color: #bd5008;
+  word-wrap: break-word;
+}
+
+.invite__getRef > Button {
+  color: #fff;
+  font-weight: 600;
+  background-color: #e3be09;
+  border: none;
+  height: 46px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.invite__getRef > Button:hover,
+.invite__getRef > Button:focus {
+  background-color:#e3be09;
+  color: #fff;
+}
