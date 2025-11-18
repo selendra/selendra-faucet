@@ -18,10 +18,10 @@ export default defineConfig({
       output: {
         manualChunks: {
           // Split vendor chunks
-          'react-vendor': ['react', 'react-dom'],
-          'wagmi-vendor': ['wagmi', 'viem', '@tanstack/react-query'],
-          'rainbowkit-vendor': ['@rainbow-me/rainbowkit'],
-          'ethers-vendor': ['ethers'],
+          "react-vendor": ["react", "react-dom"],
+          "wagmi-vendor": ["wagmi", "viem", "@tanstack/react-query"],
+          "rainbowkit-vendor": ["@rainbow-me/rainbowkit"],
+          "ethers-vendor": ["ethers"],
         },
       },
     },
