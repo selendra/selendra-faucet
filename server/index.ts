@@ -20,7 +20,7 @@ const NETWORKS = {
     name: "Selendra Mainnet",
     amount: process.env.MAINNET_FAUCET_AMOUNT || "0.01",
     rateLimitWindow: 60 * 60 * 1000, // 1 hour
-    explorer: "https://scan.selendra.org",
+    explorer: "https://explorer.selendra.org",
   },
   testnet: {
     rpc: process.env.TESTNET_RPC_ENDPOINT || "https://rpc-testnet.selendra.org",
