@@ -28,7 +28,7 @@ const NETWORKS = {
     name: "Selendra Testnet",
     amount: process.env.TESTNET_FAUCET_AMOUNT || "10",
     rateLimitWindow: 24 * 60 * 60 * 1000, // 24 hours
-    explorer: "https://testnet-scan.selendra.org",
+    explorer: "https://testnet-explorer.selendra.org",
   },
 };
 

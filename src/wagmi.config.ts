@@ -38,7 +38,7 @@ export const selendraTestnet = {
   blockExplorers: {
     default: {
       name: "Selendra Testnet Explorer",
-      url: "https://testnet-scan.selendra.org",
+      url: "https://testnet-explorer.selendra.org",
     },
   },
   testnet: true,

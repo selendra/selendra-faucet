@@ -157,7 +157,7 @@ Get faucet information for both networks.
       "faucetAmount": "10",
       "rateLimitHours": 24,
       "rpcEndpoint": "https://rpc-testnet.selendra.org",
-      "explorer": "https://testnet-scan.selendra.org"
+      "explorer": "https://testnet-explorer.selendra.org"
     }
   ]
 }
