@@ -20,7 +20,6 @@ export default defineConfig({
           // Split vendor chunks
           "react-vendor": ["react", "react-dom"],
           "wagmi-vendor": ["wagmi", "viem", "@tanstack/react-query"],
-          "rainbowkit-vendor": ["@rainbow-me/rainbowkit"],
           "ethers-vendor": ["ethers"],
         },
       },

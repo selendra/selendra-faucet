@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useAccount, useSwitchChain, useDisconnect } from 'wagmi'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useAccount, useSwitchChain, useDisconnect, useConnect } from 'wagmi'
 import { API_URL } from '../config'
 
 // Extend Window interface for MetaMask
@@ -52,6 +51,8 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
   const { address: connectedAddress, isConnected, chain } = useAccount()
   const { switchChain } = useSwitchChain()
   const { disconnect } = useDisconnect()
+  const { connect, connectors, isPending: isConnecting } = useConnect()
+  const [showConnectModal, setShowConnectModal] = useState(false)
 
   // Auto-fill address when wallet connects
   useEffect(() => {
@@ -152,7 +153,7 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
                     <div>
                       <div className="font-bold">Selendra Testnet</div>
                       <div className={`text-sm ${selectedNetwork === 'testnet' ? 'text-white/80' : 'text-black/60'}`}>
-                        Chain ID: 1953 • 10 tSEL / 24hrs
+                        Chain ID: 1953 • 100 tSEL / 24hrs
                       </div>
                     </div>
                     {selectedNetwork === 'testnet' && (
@@ -213,93 +214,95 @@ function Faucet({ faucetInfo, selectedNetwork, setSelectedNetwork }: FaucetProps
         </div>
         <div className="flex gap-3 sm:gap-4 items-center">
           <div className="flex-1 min-w-0">
-            <ConnectButton.Custom>
-              {({
-                account,
-                chain,
-                openAccountModal,
-                openChainModal,
-                openConnectModal,
-                mounted,
-              }) => {
-                const ready = mounted
-                const connected = ready && account && chain
+            {!isConnected ? (
+              <button
+                onClick={() => setShowConnectModal(true)}
+                type="button"
+                className="w-full px-6 py-3 bg-mainnet border-2 border-mainnet text-white text-sm font-medium hover:bg-mainnet-dark transition-all"
+              >
+                Connect Wallet
+              </button>
+            ) : chain && ![1961, 1953].includes(chain.id) ? (
+              <button 
+                onClick={() => setShowSwitchDialog(true)}
+                type="button"
+                className="w-full px-6 py-3 bg-warning border-2 border-warning text-white text-sm font-medium hover:bg-warning-dark transition-all"
+              >
+                Wrong network
+              </button>
+            ) : (
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <button
+                  onClick={() => {
+                    setPendingNetwork(selectedNetwork === 'mainnet' ? 'testnet' : 'mainnet')
+                    setShowSwitchDialog(true)
+                  }}
+                  type="button"
+                  className="px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium hover:border-black transition-all whitespace-nowrap"
+                >
+                  {chain?.name || 'Unknown Network'}
+                </button>
 
-                return (
-                  <div
-                    {...(!ready && {
-                      'aria-hidden': true,
-                      style: {
-                        opacity: 0,
-                        pointerEvents: 'none',
-                        userSelect: 'none',
-                      },
-                    })}
-                  >
-                    {(() => {
-                      if (!connected) {
-                        return (
-                          <button
-                            onClick={openConnectModal}
-                            type="button"
-                            className="w-full px-6 py-3 bg-mainnet border-2 border-mainnet text-white text-sm font-medium hover:bg-mainnet-dark transition-all"
-                          >
-                            Connect Wallet
-                          </button>
-                        )
-                      }
+                <div
+                  className="flex-1 px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium font-mono truncate"
+                  title={connectedAddress}
+                >
+                  {connectedAddress ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}` : ''}
+                </div>
 
-                      if (chain.unsupported) {
-                        return (
-                          <button 
-                            onClick={openChainModal} 
-                            type="button"
-                            className="w-full px-6 py-3 bg-warning border-2 border-warning text-white text-sm font-medium hover:bg-warning-dark transition-all"
-                          >
-                            Wrong network
-                          </button>
-                        )
-                      }
-
-                      return (
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                          <button
-                            onClick={() => {
-                              setPendingNetwork(selectedNetwork === 'mainnet' ? 'testnet' : 'mainnet')
-                              setShowSwitchDialog(true)
-                            }}
-                            type="button"
-                            className="px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium hover:border-black transition-all whitespace-nowrap"
-                          >
-                            {chain.name}
-                          </button>
-
-                          <button
-                            onClick={openAccountModal}
-                            type="button"
-                            className="flex-1 px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium hover:border-mainnet transition-all font-mono truncate"
-                          >
-                            {account.displayName}
-                          </button>
-
-                          <button
-                            onClick={() => disconnect()}
-                            type="button"
-                            className="px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium hover:border-warning hover:text-warning transition-all"
-                            title="Disconnect wallet"
-                          >
-                            Disconnect
-                          </button>
-                        </div>
-                      )
-                    })()}
-                  </div>
-                )
-              }}
-            </ConnectButton.Custom>
+                <button
+                  onClick={() => disconnect()}
+                  type="button"
+                  className="px-4 py-3 bg-white border-2 border-black/20 text-xs sm:text-sm font-medium hover:border-warning hover:text-warning transition-all"
+                  title="Disconnect wallet"
+                >
+                  Disconnect
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Connect Wallet Modal */}
+      {showConnectModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowConnectModal(false)}>
+          <div className="bg-white border-2 border-black max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b-2 border-black text-center">
+              <h3 className="text-xl font-bold text-black">Connect Wallet</h3>
+            </div>
+            <div className="p-6">
+              <p className="text-black/60 text-sm mb-4 text-center">Choose a wallet to connect:</p>
+              <div className="space-y-3">
+                {connectors.map((connector) => (
+                  <button
+                    key={connector.uid}
+                    onClick={() => {
+                      connect({ connector })
+                      setShowConnectModal(false)
+                    }}
+                    disabled={isConnecting}
+                    className="w-full p-4 border-2 border-black/20 bg-white text-black hover:border-mainnet hover:bg-mainnet/5 text-left font-medium transition-colors disabled:opacity-50"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span>{connector.name}</span>
+                      {isConnecting && <span className="text-sm text-black/50">Connecting...</span>}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="p-4 border-t border-black/10">
+              <button
+                onClick={() => setShowConnectModal(false)}
+                className="w-full py-2 text-sm text-black/60 hover:text-black transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Network Info */}
       {currentNetwork && (

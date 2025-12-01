@@ -45,7 +45,13 @@ export const selendraTestnet = {
 } as const;
 
 // WalletConnect project ID from https://dashboard.reown.com/
-const projectId = "312c0990-95a4-4c62-b11c-9a20576ca099";
+const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || "";
+
+if (!projectId) {
+  console.warn(
+    "WalletConnect project ID not set. WalletConnect will not work."
+  );
+}
 
 export const config = createConfig({
   chains: [selendraMainnet, selendraTestnet],
