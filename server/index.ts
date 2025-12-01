@@ -26,7 +26,7 @@ const NETWORKS = {
     rpc: process.env.TESTNET_RPC_ENDPOINT || "https://rpc-testnet.selendra.org",
     chainId: 1953,
     name: "Selendra Testnet",
-    amount: process.env.TESTNET_FAUCET_AMOUNT || "10",
+    amount: process.env.TESTNET_FAUCET_AMOUNT || "100",
     rateLimitWindow: 24 * 60 * 60 * 1000, // 24 hours
     explorer: "https://testnet-explorer.selendra.org",
   },
